@@ -33,7 +33,26 @@ export function peyQrGsiKeys(peyCodiQrId: string) {
   };
 }
 
+function assertAwsCredentialsPresent(): void {
+  const hasEnvKeys = Boolean(
+    process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY,
+  );
+  const hasWebIdentity = Boolean(
+    process.env.AWS_WEB_IDENTITY_TOKEN_FILE && process.env.AWS_ROLE_ARN,
+  );
+  const hasContainerCreds = Boolean(
+    process.env.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI ||
+      process.env.AWS_CONTAINER_CREDENTIALS_FULL_URI,
+  );
+  const hasProfile = Boolean(process.env.AWS_PROFILE);
+  if (!hasEnvKeys && !hasWebIdentity && !hasContainerCreds && !hasProfile) {
+    throw new Error("No AWS credentials in SSR runtime");
+  }
+}
+
 export async function putCharge(item: ChargeRecord): Promise<void> {
+  assertAwsCredentialsPresent();
+
   // DynamoDB String Sets cannot be empty — omit until first webhook id lands.
   const { processedWebhookIds, ...rest } = item;
   const toPut =

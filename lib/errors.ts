@@ -4,6 +4,10 @@ export function jsonError(
   status: number,
   code: string,
   message: string,
+  detail?: string,
 ): NextResponse {
-  return NextResponse.json({ error: { code, message } }, { status });
+  return NextResponse.json(
+    { error: { code, message, ...(detail !== undefined ? { detail } : {}) } },
+    { status },
+  );
 }

@@ -17,6 +17,26 @@ import type { ChargeRecord } from "@/types/charge";
 
 const NUM_REF_RE = /^[0-9]{1,7}$/;
 
+function persistChargeErrorDetail(err: unknown): string {
+  const parts = [String(err)];
+  if (err && typeof err === "object") {
+    const e = err as {
+      name?: unknown;
+      message?: unknown;
+      $metadata?: { httpStatusCode?: unknown };
+    };
+    if (typeof e.name === "string" && e.name) parts.push(`name=${e.name}`);
+    if (typeof e.message === "string" && e.message) {
+      parts.push(`message=${e.message}`);
+    }
+    const status = e.$metadata?.httpStatusCode;
+    if (typeof status === "number") {
+      parts.push(`httpStatusCode=${status}`);
+    }
+  }
+  return parts.join(" | ");
+}
+
 export async function GET(request: NextRequest) {
   if (!isAuthorizedRequest(request)) {
     return unauthorizedResponse();
@@ -157,7 +177,12 @@ export async function POST(request: NextRequest) {
     await putCharge(item);
   } catch (err) {
     console.error("PutItem charge failed", err);
-    return jsonError(500, "INTERNAL", "Failed to persist charge");
+    return jsonError(
+      500,
+      "INTERNAL",
+      "Failed to persist charge",
+      persistChargeErrorDetail(err),
+    );
   }
 
   return NextResponse.json(
