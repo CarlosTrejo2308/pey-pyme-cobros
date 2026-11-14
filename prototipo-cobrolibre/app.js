@@ -25,9 +25,60 @@ const total=a=>a.reduce((s,c)=>s+c.amount,0);
 const saved=()=>Math.round(total(paid())*COMM*100)/100;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+/* ---------- LUPITA (avatar) E ICONOS ---------- */
+function lupita(o={}){
+  const {phone=false,crop=false,cls=''}=o;
+  const vb=crop?'46 34 108 124':'0 0 200 240';
+  const hair='#1d1420',skin='#E3A97C',pink='#E6007E';
+  return `<svg class="${cls}" viewBox="${vb}" role="img" aria-label="Lupita, tu asistente" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="52" cy="140" rx="13" ry="17" fill="${hair}"/><ellipse cx="46" cy="168" rx="12" ry="16" fill="${hair}"/><ellipse cx="42" cy="196" rx="11" ry="15" fill="${hair}"/>
+  <ellipse cx="148" cy="140" rx="13" ry="17" fill="${hair}"/><ellipse cx="154" cy="168" rx="12" ry="16" fill="${hair}"/><ellipse cx="158" cy="196" rx="11" ry="15" fill="${hair}"/>
+  <path d="M30 240C30 186 66 160 100 160s70 26 70 80z" fill="#fff" stroke="#e5ddd0" stroke-width="2"/>
+  <path d="M70 168Q100 196 130 168" fill="none" stroke="${pink}" stroke-width="4" stroke-linecap="round"/>
+  ${[[78,178],[90,186],[100,189],[110,186],[122,178]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5.5" fill="${pink}"/><circle cx="${x}" cy="${y}" r="2" fill="#FFD6EA"/>`).join('')}
+  <ellipse cx="84" cy="190" rx="6" ry="2.6" fill="#2e8b57" transform="rotate(35 84 190)"/><ellipse cx="116" cy="190" rx="6" ry="2.6" fill="#2e8b57" transform="rotate(-35 116 190)"/>
+  <rect x="90" y="146" width="20" height="20" rx="8" fill="${skin}"/>
+  <ellipse cx="100" cy="88" rx="56" ry="58" fill="${hair}"/>
+  <ellipse cx="100" cy="104" rx="46" ry="50" fill="${skin}"/>
+  <path d="M52 92C56 54 144 54 148 92 132 74 114 70 100 80 86 70 68 74 52 92z" fill="${hair}"/>
+  <g fill="${pink}"><path d="M48 100l-15-9v18z"/><path d="M48 100l15-9v18z"/><path d="M152 100l-15-9v18z"/><path d="M152 100l15-9v18z"/></g>
+  <circle cx="48" cy="100" r="4" fill="#B0005F"/><circle cx="152" cy="100" r="4" fill="#B0005F"/>
+  <circle cx="56" cy="126" r="5.5" fill="${pink}"/><circle cx="144" cy="126" r="5.5" fill="${pink}"/>
+  <path d="M71 93Q82 85 93 91M107 91Q118 85 129 93" stroke="${hair}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="82" cy="107" rx="8" ry="10" fill="#3a2212"/><ellipse cx="118" cy="107" rx="8" ry="10" fill="#3a2212"/>
+  <circle cx="85" cy="103" r="3" fill="#fff"/><circle cx="121" cy="103" r="3" fill="#fff"/>
+  <circle cx="72" cy="124" r="7" fill="#F28B82" opacity=".55"/><circle cx="128" cy="124" r="7" fill="#F28B82" opacity=".55"/>
+  <path d="M100 113q-3 6 0 8" stroke="#b9805a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M89 128Q100 141 111 128z" fill="#fff" stroke="#9c2b3a" stroke-width="3" stroke-linejoin="round"/>
+  ${phone?`<path d="M170 240L153 229" stroke="${skin}" stroke-width="15" stroke-linecap="round"/>
+  <g transform="rotate(-8 150 195)"><rect x="128" y="150" width="46" height="78" rx="9" fill="#232323"/><rect x="132" y="156" width="38" height="66" rx="5" fill="#0B6B4F"/><circle cx="151" cy="180" r="11" fill="#fff"/><path d="M145 180l4 4 8-9" stroke="#0B6B4F" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="138" y="198" width="26" height="5" rx="2.5" fill="#fff" opacity=".85"/><rect x="142" y="207" width="18" height="4" rx="2" fill="#fff" opacity=".6"/></g>
+  <circle cx="129" cy="206" r="6" fill="${skin}"/>`:''}
+  </svg>`;
+}
+function ico(n,sz=56){
+  const d={
+   qr:'<rect x="8" y="8" width="18" height="18" rx="3"/><rect x="38" y="8" width="18" height="18" rx="3"/><rect x="8" y="38" width="18" height="18" rx="3"/><path d="M38 38h7v7h-7zM50 38h6M38 52h6M50 46v10h6"/>',
+   cal:'<rect x="8" y="12" width="48" height="44" rx="6"/><path d="M8 26h48M20 6v10M44 6v10M22 41l7 7 13-14"/>',
+   chat:'<path d="M10 12h44a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H30L18 54V44h-8a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/><path d="M22 28h2M32 28h2M42 28h2"/>',
+   clock:'<circle cx="32" cy="32" r="23"/><path d="M32 18v15l10 6"/>',
+   store:'<path d="M8 26l4-14h40l4 14zM12 26v6a7 7 0 0 0 13 0 7 7 0 0 0 14 0 7 7 0 0 0 13 0v-6M12 38v18h40V38M26 56V44h12v12"/>',
+   info:'<circle cx="32" cy="32" r="23"/><path d="M32 28v16M32 20v2"/>'
+  }[n];
+  return `<svg width="${sz}" height="${sz}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+}
+function guide(t){return `<div class="guide">${lupita({crop:true,cls:'gav'})}<div class="bubble">${t}</div></div>`}
+function celebrate(title,sub){
+  const o=document.createElement('div');o.className='ov';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',title);
+  o.innerHTML=`<div class="ovc"><div class="pop">${lupita({phone:true,cls:'big'})}</div><div class="ok">✔</div><h2>${esc(title)}</h2><p>${esc(sub||'')}</p><button class="btn" id="ovx">Gracias, Lupita</button></div>`;
+  document.body.appendChild(o);const b=o.querySelector('#ovx');b.focus();b.onclick=()=>o.remove();
+  speak(title);
+}
+
+
 function render(){
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===S.view?'page':'false'));
   $('#biz').textContent=S.biz.registered?S.biz.name:'Cobra sin comisiones';
+  $('#hav').innerHTML=lupita({crop:true});
   const m=$('#app');
   m.innerHTML=({inicio:vInicio,cobrar:vCobrar,recurrentes:vRec,asistente:vAsist,proyecto:vProy,registro:vReg})[S.view]();
   const after=({cobrar:bindCobrar,recurrentes:bindRec,asistente:bindAsist,registro:bindReg,inicio:bindInicio})[S.view];
@@ -36,17 +87,21 @@ function render(){
 }
 
 /* ---------- INICIO ---------- */
+function tile(c,t,ico_,l,sub,go){return `<button class="tile" style="--tc:${c};--tt:${t}" data-go="${go}">${ico(ico_,60)}<b>${l}</b><span>${sub}</span></button>`}
 function vInicio(){
   const pend=S.charges.filter(c=>c.status==='pendiente');
-  return `<h2>Hola, ${esc(S.biz.owner.split(' ')[0])} 👋</h2>
-  ${S.biz.registered?'':`<div class="card" style="border-color:var(--g)"><h3>Primero, registra tu negocio</h3><p>Toma 3 pasos y menos de 5 minutos. Sin costo y sin comisiones.</p><button class="btn" id="goReg">Registrar mi negocio</button></div>`}
-  <div class="card"><div>Has recibido</div><div class="big">${mx(total(paid()))}</div>
-    <p>Comisiones que NO pagaste: <b style="color:var(--g)">${mx(saved())}</b></p>
+  return `<div class="hero">${lupita({phone:true,cls:'hv'})}<div class="bubble"><b>¡Hola, ${esc(S.biz.owner.split(' ')[0])}!</b><br>Soy Lupita. Te ayudo a cobrar sin pagar comisiones. Toca un botón o háblame.</div></div>
+  ${S.biz.registered?'':`<div class="card" style="border-color:var(--g)"><h3>${ico('store',34)} Primero, registra tu negocio</h3><p>Son 3 pasos sencillos. Sin costo y sin comisiones.</p><button class="btn" id="goReg">Registrar mi negocio</button></div>`}
+  <div class="card money"><div>Has recibido</div><div class="big">${mx(total(paid()))}</div>
+    <p>💚 Comisiones que NO pagaste: <b style="color:var(--g)">${mx(saved())}</b></p>
     <p class="hint">Comparado con una terminal que cobra 3.6% + IVA (ejemplo ilustrativo).</p></div>
-  <div class="row"><button class="btn" data-go="cobrar">💵 Cobrar ahora</button><button class="btn alt" data-go="asistente">💬 Hablar con mi asistente</button></div>
-  <div class="card" style="margin-top:14px"><h3>Cobros pendientes (${pend.length})</h3>
-    ${pend.length?pend.map(c=>`<div class="item"><div><b>${esc(c.client)}</b><br>${esc(c.concept)}</div><div><b>${mx(c.amount)}</b></div></div>`).join(''):'<p>No tienes cobros pendientes. ¡Muy bien!</p>'}</div>
-  <div class="card"><h3>Próximos cobros mensuales</h3>${S.rec.filter(r=>r.status==='activo').map(r=>`<div class="item"><div><b>${esc(r.client)}</b><br>${r.freq}</div><b>${mx(r.amount)}</b></div>`).join('')||'<p>Aún no tienes cobros programados.</p>'}</div>`;
+  <div class="grid2">
+    ${tile('#0B6B4F','#fff','qr','Cobrar','Con QR o WhatsApp','cobrar')}
+    ${tile('#1F5FA8','#fff','cal','Cobros mensuales','Tus clientes fijos','recurrentes')}
+    ${tile('#B34E0A','#fff','chat','Hablar con Lupita','Por voz o escribiendo','asistente')}
+    ${tile('#FFD166','#1B1B1B','clock','¿Quién me debe?',pend.length+' por cobrar ('+mx(total(pend))+')','cobrar')}
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Próximos cobros mensuales</h3>${S.rec.filter(r=>r.status==='activo').map(r=>`<div class="item"><div><b>${esc(r.client)}</b><br>${r.freq}</div><b>${mx(r.amount)}</b></div>`).join('')||'<p>Aún no tienes cobros programados.</p>'}</div>`;
 }
 function bindInicio(){
   document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>view(b.dataset.go));
@@ -55,6 +110,10 @@ function bindInicio(){
 
 /* ---------- REGISTRO ---------- */
 function vReg(){
+  const g={1:'Cuéntame de tu negocio. ¡Yo te voy guiando!',2:'Es para cuidar tu dinero y que nadie se haga pasar por ti. 🔒',3:'Último paso. Aquí te llegará tu dinero, directo y sin comisiones.'};
+  return guide(g[S.step])+vReg0();
+}
+function vReg0(){
   const st=S.step;
   const bar=`<div class="steps" aria-hidden="true">${[1,2,3].map(i=>`<span class="${i<=st?'on':''}"></span>`).join('')}</div><p><b>Paso ${st} de 3</b></p>`;
   if(st===1)return `<h2>Tu negocio</h2>${bar}<div class="card">
@@ -80,12 +139,12 @@ function bindReg(){
     if(S.step===1){S.biz.name=$('#n').value.trim()||S.biz.name;S.biz.owner=$('#o').value.trim()||S.biz.owner;S.biz.giro=$('#g').value;S.biz.cel=$('#c').value}
     S.step++;render();
   };
-  if(fin)fin.onclick=()=>{S.biz.registered=true;view('inicio')};
+  if(fin)fin.onclick=()=>{S.biz.registered=true;view('inicio');celebrate('¡Listo, ya puedes cobrar!','Tu negocio quedó registrado.')};
 }
 
 /* ---------- COBRAR ---------- */
 function vCobrar(){
-  return `<h2>Cobrar</h2><div class="card">
+  return guide('Dime a quién le cobras y cuánto. Yo hago el QR.')+`<h2>Cobrar</h2><div class="card">
    <label for="cn">Nombre del cliente</label><input id="cn" placeholder="Ej. Juan Pérez">
    <label for="cp">Celular del cliente</label><input id="cp" inputmode="tel" placeholder="10 dígitos">
    <label for="cm">Monto en pesos</label><input id="cm" inputmode="decimal" placeholder="Ej. 250">
@@ -122,13 +181,13 @@ function bindCobrar(){
     const c={id:S.seq++,client,phone:$('#cp').value||'5500000000',concept:$('#cc').value.trim()||'Cobro',amount,status:'pendiente',date:today()};
     S.charges.push(c);S.qr=c;render();
   };
-  const s=$('#sim');if(s)s.onclick=()=>{S.qr.status='pagado';S.qr=null;speak('Pago recibido');render()};
+  const s=$('#sim');if(s)s.onclick=()=>{const c=S.qr;c.status='pagado';S.qr=null;render();celebrate('¡Pago recibido!',c.client+' te pagó '+mx(c.amount)+'. Sin comisiones.')};
 }
 function alert2(t){const d=document.createElement('div');d.className='notice';d.setAttribute('role','alert');d.textContent=t;$('#app').prepend(d);setTimeout(()=>d.remove(),4000)}
 
 /* ---------- RECURRENTES ---------- */
 function vRec(){
-  return `<h2>Cobros mensuales</h2>
+  return guide('Para clientes que pagan cada mes. Ellos te autorizan y pueden cancelar cuando quieran.')+`<h2>Cobros mensuales</h2>
   <div class="notice">Cada cliente debe <b>autorizar</b> el cobro recurrente (domiciliación) desde su banco. Se lo pedimos por WhatsApp y puede cancelarlo cuando quiera.</div>
   <div class="card"><h3>Programar un cobro</h3>
    <label for="rc">Cliente</label><input id="rc" placeholder="Nombre">
@@ -155,10 +214,10 @@ function bindRec(){
 }
 
 /* ---------- ASISTENTE ---------- */
-let chat=[{w:'bot',t:'Hola 👋 Soy tu asistente de CobroLibre. Puedes escribirme o hablarme. Por ejemplo: "cobra 300 a Juan" o "¿cuánto vendí hoy?".'}];
+let chat=[{w:'bot',t:'Hola 👋 Soy Lupita, tu asistente de CobroLibre. Puedes escribirme o hablarme. Por ejemplo: "cobra 300 a Juan" o "¿cuánto vendí hoy?".'}];
 function vAsist(){
   return `<h2>Mi asistente</h2><p class="hint">Así se ve dentro de WhatsApp. Habla con el micrófono o escribe.</p>
-  <div class="wa-box"><div class="wa-head">CobroLibre Asistente<small>en línea</small></div><div id="chat" role="log" aria-live="polite">${chat.map(m=>`<div class="msg ${m.w}">${esc(m.t)}</div>`).join('')}</div>
+  <div class="wa-box"><div class="wa-head"><span class="wh">${lupita({crop:true,cls:'hav2'})}<span>Lupita · CobroLibre<small>en línea</small></span></span></div><div id="chat" role="log" aria-live="polite">${chat.map(m=>m.w==='bot'?`<div class="brow">${lupita({crop:true,cls:'cav'})}<div class="msg bot">${esc(m.t)}</div></div>`:`<div class="msg me">${esc(m.t)}</div>`).join('')}</div>
   <div class="wa-in"><input id="q" placeholder="Escribe aquí…" aria-label="Mensaje"><button id="mic" aria-label="Hablar">🎤</button><button id="snd" aria-label="Enviar">➤</button></div></div>
   <div class="chips"><button>¿Cuánto vendí hoy?</button><button>¿Quién me debe?</button><button>Cobra 300 a Juan</button><button>Cobro mensual de 500 a Rosa</button><button>Ayuda</button></div>
   <label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="vz" style="width:30px;min-height:30px" ${S.voice?'checked':''}> Leer las respuestas en voz alta</label>`;
@@ -208,6 +267,13 @@ function vProy(){
    <tr><td>Clip, Mercado Pago, terminales bancarias</td><td>Comisión por transacción; 41% de los que aceptan tarjeta reportó más de 3.6% + IVA</td></tr>
    <tr><td>CoDi / DiMo (directo del banco)</td><td>Sin comisión, pero poca adopción y sin seguimiento ni recordatorios</td></tr>
    <tr><td><b>CobroLibre</b></td><td>Sin comisión por cobro + WhatsApp + cobros recurrentes + asistente accesible</td></tr></table></div>
+  <div class="card"><h3>Psicología del color</h3><p class="hint">Pensado para personas mayores: pocos colores, siempre con el mismo significado.</p>
+   <div class="item"><span class="sw" style="background:#0B6B4F"></span><div style="flex:1"><b>Verde</b> · dinero, confianza, "adelante" (cobrar, pago recibido)</div></div>
+   <div class="item"><span class="sw" style="background:#1F5FA8"></span><div style="flex:1"><b>Azul</b> · seguridad y estabilidad (cobros mensuales)</div></div>
+   <div class="item"><span class="sw" style="background:#B34E0A"></span><div style="flex:1"><b>Naranja cálido</b> · cercanía y amabilidad (Lupita, ayuda)</div></div>
+   <div class="item"><span class="sw" style="background:#FFD166"></span><div style="flex:1"><b>Amarillo</b> · atención suave (pendientes), sin alarmar</div></div>
+   <div class="item"><span class="sw" style="background:#E6007E"></span><div style="flex:1"><b>Rosa mexicano</b> · identidad y calidez (Lupita y su bordado)</div></div>
+   <p class="hint">Evitamos el rojo intenso para no asustar y usamos fondo crema para cansar menos la vista.</p></div>
   <div class="notice"><b>Esto es un prototipo.</b> Los pagos, el QR y las autorizaciones son simulados. Para operar de verdad se necesita una institución autorizada (banco, IFPE) como proveedor de cobro, la API de WhatsApp Business y cumplimiento con CNBV/Banxico.</div>`;
 }
 render();
