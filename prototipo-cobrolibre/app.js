@@ -113,6 +113,49 @@ cpF:[`Evitamos el rojo intenso para no asustar y usamos fondo crema para cansar 
 proto:[`<b>Esto es un prototipo.</b> Los pagos, el QR y las autorizaciones son simulados. Para operar de verdad se necesita una institución autorizada (banco, IFPE), la API de WhatsApp Business y cumplimiento con CNBV/Banxico.`,`<b>This is a prototype.</b> Payments, QR codes and authorizations are simulated. To operate for real you need an authorized institution (bank, IFPE), the WhatsApp Business API and CNBV/Banxico compliance.`,`<b>这是原型。</b>付款、二维码和授权均为模拟。正式运营需要授权机构（银行、IFPE）、WhatsApp Business API，并遵守 CNBV/Banxico 规定。`,`<b>Ceci est un prototype.</b> Les paiements, le QR et les autorisations sont simulés. Pour opérer réellement, il faut un établissement agréé (banque, IFPE), l'API WhatsApp Business et la conformité CNBV/Banxico.`],
 langT:[`Idioma`,`Language`,`语言`,`Langue`],thx:[`Gracias, Lupita`,`Thanks, Lupita`,`谢谢，Lupita`,`Merci, Lupita`],voiceOn:[`Voz de Lupita activada`,`Lupita's voice is on`,`Lupita 的语音已开启`,`Voix de Lupita activée`]
 };
+
+Object.assign(T,{
+nPagar:[`Pagar`,`Pay`,`付款`,`Payer`],
+tPagar:[`Pagar`,`Pay`,`付款`,`Payer`],tPagarS:[`A proveedores y personas`,`To suppliers & people`,`付给供应商和个人`,`Fournisseurs et personnes`],
+tScan:[`Escanear QR`,`Scan QR`,`扫码`,`Scanner un QR`],tScanS:[`Paga en segundos`,`Pay in seconds`,`几秒完成付款`,`Payez en quelques secondes`],
+pgT:[`Pagar`,`Pay`,`付款`,`Payer`],
+pgG:[`¿A quién le pagas hoy? Escanea un QR, elige a alguien o dímelo con tu voz.`,`Who are you paying today? Scan a QR, pick someone or tell me with your voice.`,`今天付款给谁？扫二维码、选联系人，或直接对我说。`,`Qui payez-vous aujourd'hui ? Scannez un QR, choisissez quelqu'un ou dites-le-moi à voix haute.`],
+bal:[`Tu saldo (demostración)`,`Your balance (demo)`,`您的余额（演示）`,`Votre solde (démo)`],
+btnScan:[`📷 Escanear QR`,`📷 Scan QR`,`📷 扫二维码`,`📷 Scanner un QR`],btnVoice:[`🎤 Pagar con mi voz`,`🎤 Pay with my voice`,`🎤 语音付款`,`🎤 Payer à la voix`],btnMyQr:[`🔳 Mi QR`,`🔳 My QR`,`🔳 我的二维码`,`🔳 Mon QR`],
+whoPay:[`¿A quién le pagas?`,`Who are you paying?`,`付款给谁？`,`Qui payez-vous ?`],addC:[`Agregar`,`Add`,`添加`,`Ajouter`],
+cnName:[`Nombre`,`Name`,`姓名`,`Nom`],cnPhone:[`Celular o CLABE`,`Mobile or CLABE`,`手机号或 CLABE`,`Portable ou CLABE`],cnRole:[`¿Quién es? (proveedor, empleado, renta…)`,`Who is it? (supplier, employee, rent…)`,`是谁？（供应商、员工、房租…）`,`Qui est-ce ? (fournisseur, employé, loyer…)`],
+pNote:[`¿Para qué es el pago?`,`What is the payment for?`,`付款用途`,`Motif du paiement`],
+confT:[`Vas a pagar`,`You are about to pay`,`您即将支付`,`Vous allez payer`],confTo:[`a`,`to`,`收款人`,`à`],
+confTip:[`Revisa que el nombre y el monto sean correctos. Nunca pagues si alguien te presiona o te pide que lo hagas rápido.`,`Check that the name and amount are correct. Never pay if someone pressures you or asks you to hurry.`,`请核对姓名和金额。如有人催促或施压，切勿付款。`,`Vérifiez le nom et le montant. Ne payez jamais si quelqu'un vous met la pression ou vous presse.`],
+confBtn:[`✅ Confirmar y pagar`,`✅ Confirm and pay`,`✅ 确认并付款`,`✅ Confirmer et payer`],cancel:[`Cancelar`,`Cancel`,`取消`,`Annuler`],
+newWarn:[`Contacto nuevo: verifica el nombre antes de pagar.`,`New contact: verify the name before paying.`,`新联系人：付款前请核对姓名。`,`Nouveau contact : vérifiez le nom avant de payer.`],
+noFunds:[`Saldo insuficiente para este pago.`,`Not enough balance for this payment.`,`余额不足，无法完成此笔付款。`,`Solde insuffisant pour ce paiement.`],
+scanT:[`Escanear QR`,`Scan QR`,`扫描二维码`,`Scanner un QR`],scanTxt:[`Apunta la cámara al código QR del negocio o de la persona.`,`Point the camera at the business's or person's QR code.`,`将摄像头对准商家或个人的二维码。`,`Dirigez la caméra vers le QR du commerce ou de la personne.`],
+scanSim:[`Simular lectura de QR`,`Simulate QR scan`,`模拟扫码`,`Simuler la lecture du QR`],scanNote:[`En esta demostración no se usa la cámara.`,`This demo doesn't use the camera.`,`本演示不使用摄像头。`,`Cette démo n'utilise pas la caméra.`],
+myQrT:[`Mi QR para que me paguen`,`My QR to get paid`,`我的收款二维码`,`Mon QR pour être payé`],myQrTxt:[`Muestra este código para recibir pagos sin comisión.`,`Show this code to receive payments with no fee.`,`出示此码即可零手续费收款。`,`Montrez ce code pour recevoir des paiements sans commission.`],
+sentOk:[`¡Pago enviado!`,`Payment sent!`,`付款已发送！`,`Paiement envoyé !`],sentOkS:[`Le pagaste {m} a {n}.`,`You paid {n} {m}.`,`您已向 {n} 支付 {m}。`,`Vous avez payé {m} à {n}.`],
+feedT:[`Actividad`,`Activity`,`动态`,`Activité`],you:[`Tú`,`You`,`您`,`Vous`],
+rPayAsk:[`¿Confirmas pagar {m} a {n}{w}? Di «sí» para confirmar o «no» para cancelar.`,`Do you confirm paying {m} to {n}{w}? Say “yes” to confirm or “no” to cancel.`,`确认向 {n} 支付 {m}{w}吗？说“是”确认，说“不”取消。`,`Confirmez-vous le paiement de {m} à {n}{w} ? Dites « oui » pour confirmer ou « non » pour annuler.`],
+rPayAskNew:[` Ojo: {n} es un contacto nuevo, verifica bien el nombre.`,` Careful: {n} is a new contact, double-check the name.`,` 注意：{n} 是新联系人，请仔细核对姓名。`,` Attention : {n} est un nouveau contact, vérifiez bien le nom.`],
+rPayOk:[`Listo, pagaste {m} a {n}.`,`Done, you paid {n} {m}.`,`好了，您已向 {n} 支付 {m}。`,`C'est fait, vous avez payé {m} à {n}.`],
+rPayNo:[`Cancelé el pago. No se envió nada.`,`I canceled the payment. Nothing was sent.`,`已取消付款，未发送任何款项。`,`J'ai annulé le paiement. Rien n'a été envoyé.`],
+rPayNoFunds:[`Tu saldo ({b}) no alcanza para pagar {m}.`,`Your balance ({b}) isn't enough to pay {m}.`,`您的余额（{b}）不足以支付 {m}。`,`Votre solde ({b}) ne suffit pas pour payer {m}.`],
+chip6:[`Paga 200 a Pedro por la renta`,`Pay 200 to Pedro for rent`,`向 Pedro 转账 200 用于房租`,`Paie 200 à Pedro pour le loyer`],
+yesB:[`✅ Sí, pagar`,`✅ Yes, pay`,`✅ 是，付款`,`✅ Oui, payer`],noB:[`✖ No`,`✖ No`,`✖ 不`,`✖ Non`],
+hiTxt:[`Soy Lupita. Te ayudo a cobrar y a pagar sin comisiones, con QR o con tu voz. Toca un botón o háblame.`,`I'm Lupita. I help you get paid and pay others with no fees, by QR or voice. Tap a button or talk to me.`,`我是 Lupita。我帮您用二维码或语音零手续费收款和付款。点个按钮或直接和我说话。`,`Je suis Lupita. Je vous aide à encaisser et à payer sans commission, par QR ou à la voix. Touchez un bouton ou parlez-moi.`],
+aHello:[`Hola 👋 Soy Lupita, tu asistente de CobroLibre. Puedes escribirme o hablarme. Por ejemplo: "cobra 300 a Juan", "paga 200 a Pedro por la renta" o "¿cuánto vendí hoy?".`,`Hello 👋 I'm Lupita, your CobroLibre assistant. You can type or talk to me. For example: "charge 300 to Juan", "pay 200 to Pedro for rent" or "how much did I receive today?".`,`您好 👋 我是 Lupita，您的 CobroLibre 助手。可以打字或说话，例如：“向 Juan 收款 300”、“向 Pedro 转账 200 用于房租”或“今天收到多少？”。`,`Bonjour 👋 Je suis Lupita, votre assistante CobroLibre. Écrivez ou parlez-moi. Par exemple : « encaisse 300 pour Juan », « paie 200 à Pedro pour le loyer » ou « combien ai-je reçu aujourd'hui ? ».`],
+rHelp:[`Puedo:\n• Crear cobros: "cobra 300 a Juan"\n• Pagar a otras personas: "paga 200 a Pedro por la renta" (siempre te pido confirmar)\n• Programar cobros: "cobro mensual de 500 a Rosa"\n• Decirte cuánto has recibido\n• Decirte quién te debe`,`I can:\n• Create charges: "charge 300 to Juan"\n• Pay other people: "pay 200 to Pedro for rent" (I always ask you to confirm)\n• Schedule payments: "monthly charge of 500 to Rosa"\n• Tell you how much you received\n• Tell you who owes you`,`我可以：\n• 创建收款：“向 Juan 收款 300”\n• 向他人付款：“向 Pedro 转账 200 用于房租”（我会先请您确认）\n• 安排定期收款：“向 Rosa 每月收款 500”\n• 告诉您收到了多少\n• 告诉您谁欠您钱`,`Je peux :\n• Créer des paiements à encaisser : « encaisse 300 pour Juan »\n• Payer d'autres personnes : « paie 200 à Pedro pour le loyer » (je demande toujours confirmation)\n• Programmer des paiements : « paiement mensuel de 500 pour Rosa »\n• Vous dire combien vous avez reçu\n• Vous dire qui vous doit de l'argent`],
+orgP:[`Para PyMEs de todos los giros: tiendas, fondas, talleres, servicios, turismo y artesanía.`,`For SMEs of every kind: shops, eateries, workshops, services, tourism and crafts.`,`适合各行各业的中小企业：商店、小餐馆、工坊、服务业、旅游和手工艺。`,`Pour les PME de tous secteurs : boutiques, petites tables, ateliers, services, tourisme et artisanat.`],
+pvx:[`<b>Cobra y paga con QR, WhatsApp o tu voz, sin comisión por operación.</b> Sobre rieles públicos de Banxico (SPEI/CoDi), sin comisión al comprador ni al comercio según la ATDT. Para PyMEs de todos los giros, en español, inglés, chino y francés.`,`<b>Get paid and pay with QR, WhatsApp or your voice, with no fee per transaction.</b> Built on Banxico's public rails (SPEI/CoDi), which charge neither buyer nor merchant according to ATDT. For SMEs of every kind, in Spanish, English, Chinese and French.`,`<b>用二维码、WhatsApp 或语音收款和付款，每笔零手续费。</b>基于墨西哥央行的公共系统（SPEI/CoDi），据 ATDT 称对买卖双方均不收费。面向各行各业的中小企业，支持西班牙语、英语、中文和法语。`,`<b>Encaissez et payez par QR, WhatsApp ou à la voix, sans commission par opération.</b> Basé sur les rails publics de Banxico (SPEI/CoDi), sans frais pour l'acheteur ni le commerçant selon l'ATDT. Pour les PME de tous secteurs, en espagnol, anglais, chinois et français.`],
+pw1:[`Comercios y servicios de todo tipo: tiendas, fondas, estéticas, talleres, consultorios y escuelas.`,`Businesses of every kind: shops, eateries, salons, workshops, clinics and schools.`,`各类商家和服务业：商店、小餐馆、美容院、维修坊、诊所和学校。`,`Commerces et services de tous types : boutiques, petites tables, salons, ateliers, cabinets et écoles.`],
+pw2:[`Turismo: agencias de viaje, guías y hospedaje, con mensajes a turistas en su idioma.`,`Tourism: travel agencies, guides and lodging, with messages to tourists in their language.`,`旅游业：旅行社、导游和住宿，用游客的语言发送消息。`,`Tourisme : agences de voyage, guides et hébergements, avec des messages aux touristes dans leur langue.`],
+pw3:[`Artesanas y artesanos: talleres, mercados y ferias.`,`Artisans: workshops, markets and fairs.`,`手工艺人：工坊、市集和展会。`,`Artisans : ateliers, marchés et foires.`],
+pw4:[`Negocios que pagan a proveedores, empleados y rentas con un QR o con su voz.`,`Businesses that pay suppliers, employees and rent with a QR or their voice.`,`用二维码或语音向供应商、员工支付货款、工资和房租的商家。`,`Entreprises qui paient fournisseurs, employés et loyers par QR ou à la voix.`],
+pw5:[`Personas mayores: voz, letra grande y un asistente amable.`,`Older adults: voice, large text and a friendly assistant.`,`老年人：语音、大字体和亲切的助手。`,`Seniors : voix, grands caractères et une assistante aimable.`],
+tCat:[`Mis productos y servicios`,`My products & services`,`我的商品与服务`,`Mes produits et services`],kT:[`Mis productos y servicios`,`My products & services`,`我的商品与服务`,`Mes produits et services`],
+tp1:[`Servicio`,`Service`,`服务`,`Service`],tp2:[`Producto o artesanía`,`Product or handicraft`,`商品或手工艺品`,`Produit ou artisanat`],tp3:[`Tour, taller o experiencia`,`Tour, workshop or experience`,`行程、工坊或体验`,`Visite, atelier ou expérience`],tp4:[`Comida u hospedaje`,`Food or lodging`,`餐饮或住宿`,`Repas ou hébergement`],
+gb:[`Belleza y estética`,`Beauty & salon`,`美容美发`,`Beauté et coiffure`],gm:[`Taller u oficios`,`Workshop or trades`,`维修与手艺工`,`Atelier ou métiers`],ge:[`Educación o clases`,`Education or classes`,`教育或培训`,`Éducation ou cours`],gl:[`Comercio en línea`,`Online shop`,`网店`,`Commerce en ligne`],gp:[`Producción o manufactura`,`Production or manufacturing`,`生产或制造`,`Production ou fabrication`]
+});
 const tl=(l,k,v)=>{const a=T[k];if(!a)return k;return (a[LI[l]]||a[0]).replace(/\{(\w+)\}/g,(m,x)=>v&&v[x]!=null?v[x]:'')};
 const t=(k,v)=>tl(S.lang,k,v);
 let S={
@@ -128,18 +171,22 @@ let S={
     {id:2,client:'Doña Lupita',amount:350,freq:'f3',day:1,status:'active'}
   ],
   cat:[
-    {id:1,name:'Recorrido guiado Centro Histórico',price:450,type:'tp1'},
+    {id:1,name:'Recorrido guiado Centro Histórico',price:450,type:'tp3'},
     {id:2,name:'Rebozo tejido a mano',price:850,type:'tp2'},
     {id:3,name:'Taller de alebrijes',price:600,type:'tp3'},
-    {id:4,name:'Olla de barro decorada',price:320,type:'tp2'}
+    {id:4,name:'Olla de barro decorada',price:320,type:'tp2'},
+    {id:5,name:'Corte y peinado',price:200,type:'tp1'}
   ],
   fx:{USD:18,EUR:21,CNY:2.5},
+  pay:[{id:5,to:'Don Pedro',amount:640,note:'Telas',emoji:'🧵',date:''},{id:6,to:'Ana López',amount:1500,note:'Sueldo semanal',emoji:'💼',date:''}],
+  contacts:[{id:1,name:'Don Pedro',role:'Proveedor de telas',phone:'5599990001'},{id:2,name:'Ana López',role:'Empleada',phone:'5599990002'},{id:3,name:'Casa Sol',role:'Renta del local',phone:'5599990003'},{id:4,name:'Lupe',role:'Gas y servicios',phone:'5599990004'}],
+  draft:null,pstate:'home',pf:null,em:'💸',bal0:3000,
   step:1,view:'inicio',voice:true,seq:10,qr:null,pre:null
 };
 try{const n=(navigator.language||'es').slice(0,2).toLowerCase();if(LI[n]!=null)S.lang=n}catch(e){}
 const mx=n=>n.toLocaleString(LOC[S.lang],{style:'currency',currency:'MXN'});
 const today=()=>new Date().toLocaleDateString(LOC[S.lang],{day:'numeric',month:'short'});
-S.charges.forEach(c=>c.date=today());
+S.charges.forEach(c=>c.date=today());S.pay.forEach(c=>c.date=today());
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const paid=()=>S.charges.filter(c=>c.status==='pagado');
 const total=a=>a.reduce((s,c)=>s+c.amount,0);
@@ -183,7 +230,7 @@ function ico(n,sz=56){
    chat:'<path d="M10 12h44a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H30L18 54V44h-8a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/><path d="M22 28h2M32 28h2M42 28h2"/>',
    clock:'<circle cx="32" cy="32" r="23"/><path d="M32 18v15l10 6"/>',
    store:'<path d="M8 26l4-14h40l4 14zM12 26v6a7 7 0 0 0 13 0 7 7 0 0 0 14 0 7 7 0 0 0 13 0v-6M12 38v18h40V38M26 56V44h12v12"/>',
-   info:'<circle cx="32" cy="32" r="23"/><path d="M32 28v16M32 20v2"/>'
+   send:'<path d="M6 30L58 8 46 56 31 39 6 30zM31 39l27-31"/>',scan:'<path d="M8 22V8h14M42 8h14v14M56 42v14H42M22 56H8V42M8 32h48"/>',info:'<circle cx="32" cy="32" r="23"/><path d="M32 28v16M32 20v2"/>'
   }[n];
   return `<svg width="${sz}" height="${sz}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 }
@@ -264,21 +311,23 @@ function vInicio(){
     <p>💚 ${t('saved')} <b style="color:var(--g)">${mx(saved())}</b></p><p class="hint">${t('savedHint')}</p></div>
   <div class="grid2">
     ${tile('#0B6B4F','#fff','qr','tCobrar','cobrar')}
-    ${tile('#1F5FA8','#fff','cal','tMens','recurrentes')}
+    ${tile('#1F5FA8','#fff','send','tPagar','pagar')}
+    ${tile('#0E6E7E','#fff','scan','tScan','pagar-scan')}
     ${tile('#B34E0A','#fff','chat','tLup','asistente')}
+    ${tile('#3F4FA0','#fff','cal','tMens','recurrentes')}
     ${tile('#8E3FA0','#fff','store','tCat','catalogo')}
   </div>
   <div class="card" style="margin-top:14px"><h3>${t('upc')}</h3>${S.rec.filter(r=>r.status==='active').map(r=>`<div class="item"><div><b>${esc(r.client)}</b><br>${t(r.freq)}</div><b>${mx(r.amount)}</b></div>`).join('')||`<p>${t('noRec')}</p>`}</div>${orgullo()}`;
 }
 function bindInicio(){
-  document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>view(b.dataset.go));
+  document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{if(b.dataset.go==='pagar-scan'){S.pstate='scan';view('pagar')}else view(b.dataset.go)});
   const g=$('#goReg');if(g)g.onclick=()=>{S.step=1;view('registro')};
   const h=$('#hear');if(h)h.onclick=()=>{S.voice=true;speak(t('hi',{n:S.biz.owner.split(' ')[0]})+' '+t('hiTxt'));render()};
 }
 function vReg(){
   const st=S.step;
   const bar=`<div class="steps" aria-hidden="true">${[1,2,3].map(i=>`<span class="${i<=st?'on':''}"></span>`).join('')}</div><p><b>${t('step',{a:st})}</b></p>`;
-  const G=['ga','gv','gg','gh','gr','gt','gs','go'];
+  const G=['ga','gv','gg','gh','gr','gt','gb','gm','ge','gl','gp','gs','go'];
   let body;
   if(st===1)body=`<h2>${t('r1')}</h2>${bar}<div class="card">
    <label for="n">${t('bName')}</label><input id="n" value="${esc(S.biz.name)}">
@@ -398,11 +447,15 @@ function vAsist(){
   return `<h2>${t('aT')}</h2><p class="hint">${t('aHint')}</p>
   <div class="wa-box"><div class="wa-head"><span class="wh">${lupita({crop:true,cls:'hav2'})}<span>Lupita · CobroLibre<small>${t('online')}</small></span></span></div><div id="chat" role="log" aria-live="polite">${msgs.map(m=>m.w==='bot'?`<div class="brow">${lupita({crop:true,cls:'cav'})}<div class="msg bot">${esc(m.t)}</div></div>`:`<div class="msg me">${esc(m.t)}</div>`).join('')}</div>
   <div class="wa-in"><input id="q" placeholder="${t('ph')}" aria-label="${t('ph')}"><button id="mic" aria-label="${t('micL')}">🎤</button><button id="snd" aria-label="${t('sndL')}">➤</button></div></div>
-  <div class="chips">${[1,2,3,4,5].map(i=>`<button>${t('chip'+i)}</button>`).join('')}</div>
+  <div class="chips">${[1,2,3,4,5,6].map(i=>`<button>${t('chip'+i)}</button>`).join('')}</div>
+  ${S.draft?`<div class="card" style="border-color:#1F5FA8"><p><b>${esc(S.draft.emoji)} ${mx(S.draft.amount)} → ${esc(S.draft.to)}</b></p><div class="row"><button class="btn" id="yb">${t('yesB')}</button><button class="btn alt" id="nb">${t('noB')}</button></div></div>`:''}
   <label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="vz" style="width:30px;min-height:30px" ${S.voice?'checked':''}> ${t('voiceRead')}</label>`;
 }
 function bindAsist(){
   const c=$('#chat');c.scrollTop=c.scrollHeight;
+  const yb=$('#yb'),nb=$('#nb');
+  if(yb)yb.onclick=()=>{chat.push({w:'me',t:t('yesB').replace(/^\S+\s/,'')});const r=reply('si');chat.push({w:'bot',t:r});speak(r);render()};
+  if(nb)nb.onclick=()=>{chat.push({w:'me',t:t('noB').replace(/^\S+\s/,'')});const r=reply('no');chat.push({w:'bot',t:r});speak(r);render()};
   const send=x=>{x=(x||$('#q').value).trim();if(!x)return;chat.push({w:'me',t:x});const r=reply(x);chat.push({w:'bot',t:r});speak(r);render()};
   $('#snd').onclick=()=>send();
   $('#q').onkeydown=e=>{if(e.key==='Enter')send()};
@@ -422,6 +475,10 @@ function reply(x){
   const nm=(x.match(/(?:\b(?:a|to|for|pour)|\sà|给|向|對|对)\s*([A-ZÁÉÍÓÚÑÀ-Ý][A-Za-zÀ-ÿ]+(?:\s[A-ZÁÉÍÓÚÑÀ-Ý][A-Za-zÀ-ÿ]+)?)/)||[])[1];
   const RECW=/mensual|semanal|quincenal|recurrente|suscripcion|monthly|weekly|biweekly|recurring|mensuel|hebdomadaire|bimensuel|每月|每周|每週|月付|定期/;
   const CHW=/cobra|cobrar|cobrale|cargale|charge|bill|facture|encaisse|encaisser|收款|收费/;
+  const YES=/^(si|claro|confirmo|confirmar|dale|ok|okay|yes|yep|sure|confirm|oui|d.?accord|confirme)\b|^(是|好|确认|对)/;
+  const NOW=/^(no|cancela|cancelar|cancel|nope|non|annule|annuler|stop)\b|^(不|取消|别)/;
+  if(S.draft&&YES.test(q)){const d=S.draft;S.draft=null;if(!doPay(d))return t('rPayNoFunds',{b:mx(bal()),m:mx(d.amount)});return t('rPayOk',{m:mx(d.amount),n:d.to})}
+  if(S.draft&&NOW.test(q)){S.draft=null;return t('rPayNo')}
   if(RECW.test(q)&&amount&&nm){
     const f=/semanal|weekly|hebdomadaire|每周|每週/.test(q)?'f3':/quincenal|biweekly|bimensuel|每两周/.test(q)?'f2':'f1';
     S.rec.push({id:S.seq++,client:nm,amount,freq:f,day:1,status:'wait'});
@@ -430,6 +487,16 @@ function reply(x){
   if(CHW.test(q)&&amount&&nm){
     S.charges.push({id:S.seq++,client:nm,phone:'',concept:t('conceptBot'),amount,status:'pendiente',date:today(),lang:S.lang});
     return t('rCharge',{m:mx(amount),n:nm});
+  }
+  const PAYW=/\bpaga\b|\bpagar\b|pagale|\bmanda\b|\benvia\b|transfiere|\bpay\b|\bsend\b|transfer|\bpaie\b|\bpayer\b|\benvoie\b|\bvirer?\b|付款|支付|转账|汇款/;
+  if(PAYW.test(q)&&amount&&nm){
+    const mm=x.match(/(?:\bpor\b|\bfor\b|\bpour\b|用于|为了)\s*(?:la |el |los |las |the |le |la |l')?(.+)$/i);
+    const note=mm?mm[1].trim():'';
+    const known=S.contacts.find(c=>c.name.toLowerCase().includes(nm.toLowerCase()));
+    if(amount>bal())return t('rPayNoFunds',{b:mx(bal()),m:mx(amount)});
+    S.draft={to:known?known.name:nm,amount,note,emoji:emojiFor(note),isNew:!known};
+    const WP={es:p=>' por '+p,en:p=>' for '+p,zh:p=>'（用途：'+p+'）',fr:p=>' pour '+p};
+    return t('rPayAsk',{m:mx(amount),n:S.draft.to,w:note?WP[S.lang](note):''})+(S.draft.isNew?t('rPayAskNew',{n:S.draft.to}):'');
   }
   if(/mensual|recurrente|programad|monthly|recurring|scheduled|mensuel|programm|月付|定期|每月/.test(q)){const a=S.rec.filter(r=>r.status==='active');return a.length?t('rRecList')+'\n'+a.map(r=>`• ${r.client}: ${mx(r.amount)} (${t(r.freq)})`).join('\n'):t('rRecNone')}
   if(/debe|pendiente|falta|owe|pending|unpaid|doit|impay|attente|欠|未付|待收/.test(q)){const p=S.charges.filter(c=>c.status==='pendiente');return p.length?t('rDebt',{k:p.length,m:mx(total(p))})+'\n'+p.map(c=>`• ${c.client}: ${mx(c.amount)}`).join('\n'):t('rDebtNone')}
@@ -451,16 +518,92 @@ function vProy(){
   ${orgullo()}<div class="notice">${t('proto')}</div>`;
 }
 
-const VIEWS={inicio:vInicio,cobrar:vCobrar,recurrentes:vRec,asistente:vAsist,proyecto:vProy,registro:vReg,catalogo:vCat};
-const BINDS={inicio:bindInicio,cobrar:bindCobrar,recurrentes:bindRec,asistente:bindAsist,registro:bindReg,catalogo:bindCat};
+
+function bal(){return S.bal0+total(paid())-total(S.pay)}
+function av(n,sz=46){const cols=['#0B6B4F','#1F5FA8','#B34E0A','#8E3FA0','#0E6E7E','#C2185B'];let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))>>>0;return `<span class="av" style="background:${cols[h%cols.length]};width:${sz}px;height:${sz}px;line-height:${sz}px;font-size:${Math.round(sz*.45)}px">${esc(n.trim().charAt(0).toUpperCase())}</span>`}
+const EMO=['🧵','💼','🏠','💡','🛒','🎁','💸'];
+function emojiFor(n){n=(n||'').toLowerCase();return /renta|rent|loyer|房租|租/.test(n)?'🏠':/sueldo|nomina|nómina|salary|wage|salaire|工资|薪/.test(n)?'💼':/tela|material|supplies|matos|matériel|materiel|材料|原料|compra|proveedor/.test(n)?'🧵':/luz|gas|agua|electric|servicio|service|电|水|煤/.test(n)?'💡':'💸'}
+function doPay(d){
+  if(d.amount>bal())return false;
+  S.pay.push({id:S.seq++,to:d.to,amount:d.amount,note:d.note,emoji:d.emoji,date:today()});
+  if(!S.contacts.find(c=>c.name.toLowerCase()===d.to.toLowerCase()))S.contacts.push({id:S.seq++,name:d.to,role:d.role||'',phone:d.phone||''});
+  return true;
+}
+function feedCard(){
+  const items=[...S.pay.map(p=>({id:p.id,out:true,who:p.to,amt:p.amount,note:p.note,e:p.emoji,date:p.date})),...paid().map(c=>({id:c.id,out:false,who:c.client,amt:c.amount,note:c.concept,e:'💚',date:c.date}))].sort((a,b)=>b.id-a.id).slice(0,8);
+  return `<div class="card"><h3>${t('feedT')}</h3>${items.map(i=>`<div class="item">${av(i.who,40)}<div style="flex:1;min-width:140px"><b>${i.out?esc(t('you'))+' → '+esc(i.who):esc(i.who)+' → '+esc(t('you'))}</b><br><span class="hint">${i.e} ${esc(i.note||'')} · ${i.date}</span></div><b style="color:${i.out?'#1F5FA8':'#0B6B4F'}">${i.out?'−':'+'}${mx(i.amt)}</b></div>`).join('')}</div>`;
+}
+function vPagar(){
+  if(S.draft)return vConfirm();
+  if(S.pstate==='scan')return vScan();
+  if(S.pstate==='myqr')return vMyQr();
+  const f=S.pf;
+  const form=f?`<div class="card" style="border-color:#1F5FA8"><h3>${f.isNew?t('addC'):esc(f.name)}</h3>
+   ${f.isNew?`<label for="fn">${t('cnName')}</label><input id="fn"><label for="fp">${t('cnPhone')}</label><input id="fp" inputmode="tel"><label for="fr">${t('cnRole')}</label><input id="fr">`:''}
+   <label for="fa">${t('cAmt')}</label><input id="fa" class="payamt" inputmode="decimal">
+   <label>${t('pNote')}</label><div class="emo">${EMO.map(e=>`<button type="button" data-e="${e}" class="${e===S.em?'on':''}" aria-label="${e}">${e}</button>`).join('')}</div>
+   <input id="fo" aria-label="${t('pNote')}">
+   <div class="row" style="margin-top:12px"><button class="btn alt" id="fcancel">${t('cancel')}</button><button class="btn" id="fgo">${t('next')}</button></div></div>`:'';
+  return guide(t('pgG'))+`<h2>${t('pgT')}</h2>
+  <div class="card money"><div>${t('bal')}</div><div class="big" style="color:#1F5FA8">${mx(bal())}</div></div>
+  <div class="row3"><button class="btn" id="pscan" style="background:#0E6E7E">${t('btnScan')}</button><button class="btn" id="pvoice" style="background:#B34E0A">${t('btnVoice')}</button><button class="btn alt" id="pmyqr">${t('btnMyQr')}</button></div>
+  <div class="card" style="margin-top:14px"><h3>${t('whoPay')}</h3><div class="contacts">${S.contacts.map(c=>`<button class="ct" data-ct="${c.id}">${av(c.name,54)}<b>${esc(c.name)}</b><span>${esc(c.role||'')}</span></button>`).join('')}<button class="ct" data-ct="new"><span class="av add">＋</span><b>${t('addC')}</b></button></div></div>
+  ${form}${feedCard()}`;
+}
+function vScan(){
+  return `<h2>${t('scanT')}</h2><p>${t('scanTxt')}</p>
+  <div class="viewfinder" aria-hidden="true"><svg viewBox="0 0 200 200"><path d="M20 60V20h40M140 20h40v40M180 140v40h-40M60 180H20v-40" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></svg><div class="scanline"></div></div>
+  <p class="hint">${t('scanNote')}</p>
+  <div class="row"><button class="btn alt" id="scancel">${t('cancel')}</button><button class="btn" id="sscan">${t('scanSim')}</button></div>`;
+}
+function vMyQr(){
+  return `<h2>${t('myQrT')}</h2><div class="card" style="text-align:center"><div class="orow" style="justify-content:center">${av(S.biz.name,48)}<b style="font-size:1.2rem">${esc(S.biz.name)}</b></div>
+  <canvas id="qr" width="260" height="260" aria-label="QR" style="margin:12px auto;display:block"></canvas><p>${t('myQrTxt')}</p><p class="hint">${t('qrHint')}</p></div>
+  <button class="btn alt" id="mback">${t('back')}</button>`;
+}
+function vConfirm(){
+  const d=S.draft,short=d.amount>bal();
+  return guide(t('confTip'))+`<div class="card" style="border-color:#1F5FA8;text-align:center"><div>${t('confT')}</div><div class="big" style="color:#1F5FA8">${mx(d.amount)}</div><div>${t('confTo')}</div>
+  <div class="orow" style="justify-content:center;margin:6px 0">${av(d.to,56)}<b style="font-size:1.3rem">${esc(d.to)}</b></div><p>${d.emoji} ${esc(d.note||'')}</p>
+  ${d.isNew?`<div class="notice">${t('newWarn')}</div>`:''}${short?`<div class="notice" role="alert">${t('noFunds')}</div>`:''}
+  <button class="btn" id="cok" ${short?'disabled':''}>${t('confBtn')}</button><button class="btn alt" id="cno" style="margin-top:10px">${t('cancel')}</button></div>`;
+}
+function bindPagar(){
+  const on=(id,fn)=>{const e=$(id);if(e)e.onclick=fn};
+  on('#pscan',()=>{S.pstate='scan';render()});
+  on('#pvoice',()=>{view('asistente');setTimeout(()=>{try{$('#mic').click()}catch(e){}},60)});
+  on('#pmyqr',()=>{S.pstate='myqr';render()});
+  on('#mback',()=>{S.pstate='home';render()});
+  on('#scancel',()=>{S.pstate='home';render()});
+  on('#sscan',()=>{S.draft={to:'Panadería La Esperanza',amount:230,note:'Compra',emoji:'🛒',isNew:true,via:'qr'};render()});
+  on('#cno',()=>{S.draft=null;S.pstate='home';render()});
+  on('#cok',()=>{const d=S.draft;if(!doPay(d)){alert2(t('noFunds'));return}S.draft=null;S.pf=null;S.pstate='home';render();celebrate(t('sentOk'),t('sentOkS',{m:mx(d.amount),n:d.to}))});
+  document.querySelectorAll('[data-ct]').forEach(b=>b.onclick=()=>{
+    if(b.dataset.ct==='new')S.pf={isNew:true};else{const c=S.contacts.find(x=>x.id==b.dataset.ct);S.pf={name:c.name,id:c.id,isNew:false}}
+    render();const a=$('#fa');if(a)a.scrollIntoView({block:'center'});
+  });
+  document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{S.em=b.dataset.e;document.querySelectorAll('[data-e]').forEach(x=>x.classList.toggle('on',x===b))});
+  on('#fcancel',()=>{S.pf=null;render()});
+  on('#fgo',()=>{
+    const f=S.pf;const amount=parseFloat(String($('#fa').value).replace(',','.'));
+    const name=f.isNew?$('#fn').value.trim():f.name;
+    if(!name||!(amount>0)){alert2(t('miss'));return}
+    S.draft={to:name,amount,note:$('#fo').value.trim(),emoji:S.em,isNew:!!f.isNew,phone:f.isNew?$('#fp').value:'',role:f.isNew?$('#fr').value:''};
+    render();
+  });
+  if($('#qr'))drawQR('MI'+S.biz.name);
+}
+
+const VIEWS={inicio:vInicio,cobrar:vCobrar,recurrentes:vRec,asistente:vAsist,proyecto:vProy,registro:vReg,catalogo:vCat,pagar:vPagar};
+const BINDS={inicio:bindInicio,cobrar:bindCobrar,recurrentes:bindRec,asistente:bindAsist,registro:bindReg,catalogo:bindCat,pagar:bindPagar};
 function render(){
   document.documentElement.lang=S.lang;
   $('#sub').textContent=S.biz.registered?S.biz.name:t('sub');
   $('#hav').innerHTML=lupita({crop:true});
   $('#vz2').textContent=S.voice?'🔊':'🔇';
   $('#lg').textContent='🌐 '+S.lang.toUpperCase();
-  const NAV=[['inicio','🏠','nInicio'],['cobrar','💵','nCobrar'],['recurrentes','🔁','nMens'],['asistente','💬','nAyuda'],['proyecto','📋','nProy']];
-  const cur=S.view==='catalogo'?'cobrar':S.view==='registro'?'inicio':S.view;
+  const NAV=[['inicio','🏠','nInicio'],['cobrar','💵','nCobrar'],['pagar','📤','nPagar'],['asistente','💬','nAyuda'],['proyecto','📋','nProy']];
+  const cur=(S.view==='catalogo'||S.view==='recurrentes')?'cobrar':S.view==='registro'?'inicio':S.view;
   $('nav').innerHTML=NAV.map(([v,i,k])=>`<button data-v="${v}" aria-current="${v===cur?'page':'false'}"><span class="i">${i}</span>${t(k)}</button>`).join('');
   document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>view(b.dataset.v));
   $('#app').innerHTML=`<div class="pp">${papel()}</div><div class="greca"></div>`+VIEWS[S.view]();
