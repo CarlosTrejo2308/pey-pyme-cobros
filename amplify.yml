@@ -4,6 +4,33 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        # Amplify WEB_COMPUTE (Next.js SSR) does not inject Hosting env vars into
+        # the Lambda runtime unless they are present at build time. Write them into
+        # .env.production from the Amplify console / branch environment (no secrets
+        # hardcoded in the repo). Values are never echoed to build logs.
+        - |
+          : > .env.production
+          write_env() {
+            key="$1"
+            # Indirect expansion: only write when the shell env var is non-empty.
+            eval "val=\${$key-}"
+            if [ -n "$val" ]; then
+              printf '%s=%s\n' "$key" "$val" >> .env.production
+            fi
+          }
+          write_env DEMO_ACCESS_TOKEN
+          write_env PEY_API_KEY
+          write_env PEY_WEBHOOK_SECRET
+          write_env CHARGES_TABLE_NAME
+          write_env APP_BASE_URL
+          write_env TWILIO_ACCOUNT_SID
+          write_env TWILIO_AUTH_TOKEN
+          write_env TWILIO_WHATSAPP_FROM
+          write_env TWILIO_WHATSAPP_CONTENT_SID
+          write_env TWILIO_CONTENT_VARIABLES
+          # Confirm which keys were written (names only — never print values).
+          echo "Wrote .env.production keys:"
+          cut -d= -f1 .env.production | sort
     build:
       commands:
         - npm run build
