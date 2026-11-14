@@ -91,3 +91,19 @@ nav button[aria-current=page]{color:#fff}
 @media(max-width:380px){.arts figcaption{font-size:.62rem}}
 
 header{flex-wrap:nowrap}header h1{min-width:0;font-size:1.1rem}.tools{display:flex;gap:6px;flex:none}.tools button{margin-left:0}
+
+/* ===== tradición mexicana ===== */
+body{font-family:'Atkinson Hyperlegible','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;background-color:#FFFBF2;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 4l7 13 13 7-13 7-7 13-7-13-13-7 13-7z' fill='none' stroke='%231F5FA8' stroke-width='1.4' opacity='.14'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%23E6007E' opacity='.14'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:'Fraunces','Noto Serif SC',Georgia,serif}
+.greca{height:14px;margin:0 -16px 14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='14'%3E%3Cpath d='M0 12h7V6h7V2h14v4h7v6h7' fill='none' stroke='%23E6007E' stroke-width='3' stroke-linejoin='miter'/%3E%3Cpath d='M0 2h42' stroke='%230B6B4F' stroke-width='1' opacity='0'/%3E%3C/svg%3E") repeat-x center/auto 14px;background-color:#FFF1DC}
+.card h3{border-bottom:3px double #E6007E55;padding-bottom:4px}
+.card{border-radius:18px;box-shadow:0 2px 0 #00000010}
+header h1 small{font-family:'Atkinson Hyperlegible',sans-serif}
+header .tools button{padding:0 10px;white-space:nowrap}
+.arts{grid-template-columns:repeat(5,1fr);gap:4px}.arts figcaption{font-size:.6rem}
+header{padding:10px 12px;gap:8px}
+header h1{flex:1;min-width:0;font-size:1rem;line-height:1.15}
+header h1 small{display:block;font-size:.7rem;font-weight:400}
+#hav svg{width:44px;height:48px}
+header .tools{gap:5px}
+header .tools button{min-width:42px;padding:0 8px;font-size:.85rem}

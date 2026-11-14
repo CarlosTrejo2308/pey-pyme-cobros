@@ -5,26 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CobroLibre – Cobra sin comisiones</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-  <span id="hav"></span><h1>CobroLibre <small id="biz">Cobra sin comisiones</small></h1>
+  <span id="hav"></span>
+  <h1>CobroLibre <small id="sub"></small></h1>
   <div class="tools">
-    <button id="vz2" aria-label="Voz de Lupita activada o desactivada">🔊</button>
-    <button id="fsm" aria-label="Letra más pequeña">A−</button>
-    <button id="fsp" aria-label="Letra más grande">A+</button>
+    <button id="lg" aria-label="Idioma / Language / 语言 / Langue">🌐 ES</button>
+    <button id="vz2" aria-label="Voz / Voice">🔊</button>
+    <button id="fsz" aria-label="Aa">Aa</button>
   </div>
 </header>
 <main id="app" tabindex="-1"></main>
-<nav aria-label="Secciones">
-  <button data-v="inicio"><span class="i">🏠</span>Inicio</button>
-  <button data-v="cobrar"><span class="i">💵</span>Cobrar</button>
-  <button data-v="recurrentes"><span class="i">🔁</span>Mensuales</button>
-  <button data-v="asistente"><span class="i">💬</span>Ayuda</button>
-  <button data-v="proyecto"><span class="i">📋</span>Proyecto</button>
-</nav>
+<nav aria-label="Menu"></nav>
 
 <script src="app.js"></script>
 </body>
