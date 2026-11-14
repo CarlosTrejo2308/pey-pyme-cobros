@@ -13,7 +13,7 @@ let S={
     {id:1,client:'Oficinas Sol',amount:1200,freq:'mensual',day:5,status:'activo'},
     {id:2,client:'Doña Lupita',amount:350,freq:'semanal',day:1,status:'activo'}
   ],
-  step:1,view:'inicio',voice:false,seq:10,qr:null
+  step:1,view:'inicio',voice:true,seq:10,qr:null
 };
 const view=v=>{S.view=v;render()};
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>view(b.dataset.v));
@@ -66,6 +66,35 @@ function ico(n,sz=56){
   }[n];
   return `<svg width="${sz}" height="${sz}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 }
+
+/* ---------- IMÁGENES MEXICANAS ---------- */
+function papel(){
+  const col=['#E6007E','#0B6B4F','#F5A300','#1F5FA8','#8E3FA0','#E6007E','#0B6B4F','#F5A300'];
+  return `<svg viewBox="0 0 400 50" width="100%" role="img" aria-label="Papel picado de colores" preserveAspectRatio="xMidYMin slice"><path d="M0 5Q200 14 400 5" stroke="#8a6d3b" stroke-width="2" fill="none"/>${col.map((c,i)=>{const x=i*50+5,y=9+Math.sin(i/7*Math.PI)*3;return `<g transform="translate(${x} ${y})"><path d="M0 0h40v28l-5 6-5-6-5 6-5-6-5 6-5-6-5 6-5-6z" fill="${c}"/><circle cx="20" cy="12" r="4" fill="#FFFBF2"/><path d="M8 7l3 3-3 3-3-3zM32 7l3 3-3 3-3-3zM20 21l3 3-3 3-3-3z" fill="#FFFBF2"/></g>`}).join('')}</svg>`;
+}
+function bandera(w=90){
+  return `<svg width="${w}" viewBox="0 0 90 60" role="img" aria-label="Bandera de México"><rect width="90" height="60" rx="4" fill="#fff" stroke="#bbb"/><rect width="30" height="60" rx="4" fill="#006847"/><rect x="60" width="30" height="60" rx="4" fill="#CE1126"/><rect x="26" width="8" height="60" fill="#006847"/><rect x="56" width="8" height="60" fill="#fff"/><circle cx="45" cy="30" r="9.5" fill="#C9A24B"/><path d="M36 33q9 11 18 0" stroke="#006847" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="45" cy="28" r="3.2" fill="#7a4a1a"/></svg>`;
+}
+let _sid=0;
+function sello(w=130){
+  const id='cp'+(++_sid);
+  const pet=[...Array(10).keys()].map(i=>`<ellipse cx="80" cy="64" rx="6.5" ry="13" fill="#F5A300" transform="rotate(${i*36} 80 80)"/>`).join('');
+  return `<svg width="${w}" viewBox="0 0 160 160" role="img" aria-label="Sello: orgullosamente mexicano, hecho con cariño en México"><defs><path id="${id}" d="M80 80m-57 0a57 57 0 1 1 114 0a57 57 0 1 1-114 0"/></defs>
+  <circle cx="80" cy="80" r="76" fill="#fff" stroke="#006847" stroke-width="7"/><circle cx="80" cy="80" r="68" fill="none" stroke="#CE1126" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+  <text font-size="9.5" font-weight="700" fill="#0B6B4F"><textPath href="#${id}" startOffset="0" textLength="350" lengthAdjust="spacing">HECHO CON CARIÑO EN MÉXICO ★ ORGULLOSAMENTE MEXICANO ★</textPath></text>
+  <circle cx="80" cy="80" r="40" fill="#FFF4D6"/>${pet}<circle cx="80" cy="80" r="9" fill="#B34E0A"/></svg>`;
+}
+function artesanias(){
+  const olla=`<path d="M20 30C8 42 12 68 40 70c28-2 32-28 20-40z" fill="#C8672B"/><path d="M28 30l2-11h20l2 11z" fill="#A9511F"/><ellipse cx="40" cy="19" rx="11" ry="3.5" fill="#7a3a15"/><path d="M14 48q13-7 26 0t26 0" stroke="#fff" stroke-width="3.5" fill="none"/><g fill="#1F5FA8"><circle cx="24" cy="57" r="3"/><circle cx="40" cy="60" r="3"/><circle cx="56" cy="57" r="3"/></g>`;
+  const sarape=`<rect x="12" y="14" width="56" height="48" fill="#fff"/><rect x="12" y="14" width="56" height="7" fill="#E6007E"/><rect x="12" y="23" width="56" height="5" fill="#0B6B4F"/><rect x="12" y="30" width="56" height="14" fill="#F5A300"/><path d="M40 31l9 6-9 6-9-6z" fill="#1F5FA8"/><rect x="12" y="46" width="56" height="5" fill="#0B6B4F"/><rect x="12" y="53" width="56" height="9" fill="#E6007E"/>${[...Array(14).keys()].map(i=>`<path d="M${14+i*4} 62v9" stroke="#E6007E" stroke-width="2"/>`).join('')}`;
+  const flor=`${[...Array(12).keys()].map(i=>`<ellipse cx="40" cy="22" rx="8" ry="15" fill="${i%2?'#F5A300':'#FFB627'}" transform="rotate(${i*30} 40 40)"/>`).join('')}<circle cx="40" cy="40" r="9" fill="#B34E0A"/>`;
+  const somb=`<ellipse cx="40" cy="56" rx="36" ry="11" fill="#C9A24B"/><path d="M24 55C24 22 56 22 56 55z" fill="#D9B45B"/><path d="M24 47h32" stroke="#E6007E" stroke-width="6"/><g fill="#fff"><circle cx="14" cy="58" r="2"/><circle cx="26" cy="64" r="2"/><circle cx="40" cy="66" r="2"/><circle cx="54" cy="64" r="2"/><circle cx="66" cy="58" r="2"/></g>`;
+  const f=(g,n)=>`<figure><svg viewBox="0 0 80 80" role="img" aria-label="${n}">${g}</svg><figcaption>${n}</figcaption></figure>`;
+  return `<div class="arts">${f(olla,'Barro y talavera')}${f(sarape,'Sarape')}${f(flor,'Cempasúchil')}${f(somb,'Sombrero')}</div>`;
+}
+function orgullo(){
+  return `<div class="card orgullo"><div class="orow">${bandera(84)}<div style="flex:1"><h3>Hecho con cariño en México</h3><p>Para las PyMEs que mueven a nuestro país: fondas, tiendas, artesanas y artesanos.</p></div></div>${artesanias()}<div class="orow" style="justify-content:center;margin-top:10px">${sello(120)}</div><p class="hint">Sello decorativo original de CobroLibre. El distintivo oficial «Hecho en México» requiere autorización de la Secretaría de Economía, y el escudo de la bandera aquí está simplificado.</p></div>`;
+}
 function guide(t){return `<div class="guide">${lupita({crop:true,cls:'gav'})}<div class="bubble">${t}</div></div>`}
 function celebrate(title,sub){
   const o=document.createElement('div');o.className='ov';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',title);
@@ -79,8 +108,9 @@ function render(){
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===S.view?'page':'false'));
   $('#biz').textContent=S.biz.registered?S.biz.name:'Cobra sin comisiones';
   $('#hav').innerHTML=lupita({crop:true});
+  $('#vz2').textContent=S.voice?'🔊':'🔇';
   const m=$('#app');
-  m.innerHTML=({inicio:vInicio,cobrar:vCobrar,recurrentes:vRec,asistente:vAsist,proyecto:vProy,registro:vReg})[S.view]();
+  m.innerHTML='<div class="pp">'+papel()+'</div>'+({inicio:vInicio,cobrar:vCobrar,recurrentes:vRec,asistente:vAsist,proyecto:vProy,registro:vReg})[S.view]();
   const after=({cobrar:bindCobrar,recurrentes:bindRec,asistente:bindAsist,registro:bindReg,inicio:bindInicio})[S.view];
   if(after)after();
   window.scrollTo(0,0);
@@ -90,7 +120,7 @@ function render(){
 function tile(c,t,ico_,l,sub,go){return `<button class="tile" style="--tc:${c};--tt:${t}" data-go="${go}">${ico(ico_,60)}<b>${l}</b><span>${sub}</span></button>`}
 function vInicio(){
   const pend=S.charges.filter(c=>c.status==='pendiente');
-  return `<div class="hero">${lupita({phone:true,cls:'hv'})}<div class="bubble"><b>¡Hola, ${esc(S.biz.owner.split(' ')[0])}!</b><br>Soy Lupita. Te ayudo a cobrar sin pagar comisiones. Toca un botón o háblame.</div></div>
+  return `<div class="hero">${lupita({phone:true,cls:'hv'})}<div class="bubble"><b>¡Hola, ${esc(S.biz.owner.split(' ')[0])}!</b><br>Soy Lupita. Te ayudo a cobrar sin pagar comisiones. Toca un botón o háblame.<br><button class="btn alt sm" id="hear" style="margin-top:8px">🔊 Escuchar a Lupita</button></div></div>
   ${S.biz.registered?'':`<div class="card" style="border-color:var(--g)"><h3>${ico('store',34)} Primero, registra tu negocio</h3><p>Son 3 pasos sencillos. Sin costo y sin comisiones.</p><button class="btn" id="goReg">Registrar mi negocio</button></div>`}
   <div class="card money"><div>Has recibido</div><div class="big">${mx(total(paid()))}</div>
     <p>💚 Comisiones que NO pagaste: <b style="color:var(--g)">${mx(saved())}</b></p>
@@ -101,11 +131,12 @@ function vInicio(){
     ${tile('#B34E0A','#fff','chat','Hablar con Lupita','Por voz o escribiendo','asistente')}
     ${tile('#FFD166','#1B1B1B','clock','¿Quién me debe?',pend.length+' por cobrar ('+mx(total(pend))+')','cobrar')}
   </div>
-  <div class="card" style="margin-top:14px"><h3>Próximos cobros mensuales</h3>${S.rec.filter(r=>r.status==='activo').map(r=>`<div class="item"><div><b>${esc(r.client)}</b><br>${r.freq}</div><b>${mx(r.amount)}</b></div>`).join('')||'<p>Aún no tienes cobros programados.</p>'}</div>`;
+  <div class="card" style="margin-top:14px"><h3>Próximos cobros mensuales</h3>${S.rec.filter(r=>r.status==='activo').map(r=>`<div class="item"><div><b>${esc(r.client)}</b><br>${r.freq}</div><b>${mx(r.amount)}</b></div>`).join('')||'<p>Aún no tienes cobros programados.</p>'}</div>${orgullo()}`;
 }
 function bindInicio(){
   document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>view(b.dataset.go));
   const g=$('#goReg');if(g)g.onclick=()=>{S.step=1;view('registro')};
+  const h=$('#hear');if(h)h.onclick=()=>{S.voice=true;speak('¡Hola '+S.biz.owner.split(' ')[0]+'! Soy Lupita. Te ayudo a cobrar sin pagar comisiones. Toca un botón o háblame.');render()};
 }
 
 /* ---------- REGISTRO ---------- */
@@ -237,7 +268,21 @@ function bindAsist(){
     catch(e){alert2('El micrófono no está disponible. Escribe tu mensaje.')}
   };
 }
-function speak(t){if(!S.voice||!window.speechSynthesis)return;try{const u=new SpeechSynthesisUtterance(t);u.lang='es-MX';u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+let VOZ=null;
+function pickVoice(){
+  if(!window.speechSynthesis)return null;
+  const vs=speechSynthesis.getVoices();if(!vs.length)return null;
+  const mxv=vs.filter(v=>/^es[-_]MX/i.test(v.lang));
+  const pref=/paulina|sabina|dalia|marisol|mónica|monica|google|natural|female|mujer/i;
+  VOZ=mxv.find(v=>pref.test(v.name))||mxv[0]||vs.find(v=>/^es[-_]US/i.test(v.lang))||vs.find(v=>/^es/i.test(v.lang))||null;
+  return VOZ;
+}
+try{if(window.speechSynthesis){speechSynthesis.onvoiceschanged=pickVoice;pickVoice()}}catch(e){}
+function speak(t){
+  if(!S.voice||!window.speechSynthesis)return;
+  try{const u=new SpeechSynthesisUtterance(t);const v=VOZ||pickVoice();if(v)u.voice=v;u.lang=(v&&v.lang)||'es-MX';u.rate=.88;u.pitch=1.1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}
+}
+document.addEventListener('click',e=>{if(e.target.closest('#vz2')){S.voice=!S.voice;if(S.voice)speak('Voz de Lupita activada');else{try{speechSynthesis.cancel()}catch(_){}}render()}});
 function reply(t){
   const q=t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const num=(q.match(/(\d+(?:[.,]\d+)?)/)||[])[1];const amount=num?parseFloat(num.replace(',','.')):0;
@@ -245,10 +290,10 @@ function reply(t){
   if(/mensual|semanal|quincenal|recurrente|suscripcion/.test(q)&&amount&&nm){
     const freq=/semanal/.test(q)?'semanal':/quincenal/.test(q)?'quincenal':'mensual';
     S.rec.push({id:S.seq++,client:nm,amount,freq,day:1,status:'pendiente de autorización'});
-    return `Listo. Le mandé a ${nm} una solicitud por WhatsApp para autorizar ${mx(amount)} ${freq}. Cuando acepte, el cobro quedará activo.`}
+    return `¡Listo, con gusto! Le mandé a ${nm} una solicitud por WhatsApp para autorizar ${mx(amount)} ${freq}. Cuando acepte, el cobro quedará activo.`}
   if(/cobra|cobrar|cobrale|cargale/.test(q)&&amount&&nm){
     S.charges.push({id:S.seq++,client:nm,phone:'',concept:'Cobro por asistente',amount,status:'pendiente',date:today()});
-    return `Listo. Creé el cobro de ${mx(amount)} para ${nm} y le envié el QR por WhatsApp. Sin comisiones.`}
+    return `¡Ándale, listo! Creé el cobro de ${mx(amount)} para ${nm} y le envié el QR por WhatsApp. Sin comisiones.`}
   if(/mensual|recurrente|programad/.test(q)){const a=S.rec.filter(r=>r.status==='activo');return a.length?'Tus cobros programados:\n'+a.map(r=>`• ${r.client}: ${mx(r.amount)} ${r.freq}`).join('\n'):'No tienes cobros programados activos.'}
   if(/debe|pendiente|falta/.test(q)){const p=S.charges.filter(c=>c.status==='pendiente');return p.length?`Tienes ${p.length} cobros pendientes por ${mx(total(p))}:\n`+p.map(c=>`• ${c.client}: ${mx(c.amount)}`).join('\n'):'Nadie te debe nada por ahora.'}
   if(/vend|cobr|recib|gane|dinero|cuanto/.test(q))return `Has recibido ${mx(total(paid()))} en ${paid().length} pagos. Te ahorraste ${mx(saved())} en comisiones.`;
@@ -274,6 +319,6 @@ function vProy(){
    <div class="item"><span class="sw" style="background:#FFD166"></span><div style="flex:1"><b>Amarillo</b> · atención suave (pendientes), sin alarmar</div></div>
    <div class="item"><span class="sw" style="background:#E6007E"></span><div style="flex:1"><b>Rosa mexicano</b> · identidad y calidez (Lupita y su bordado)</div></div>
    <p class="hint">Evitamos el rojo intenso para no asustar y usamos fondo crema para cansar menos la vista.</p></div>
-  <div class="notice"><b>Esto es un prototipo.</b> Los pagos, el QR y las autorizaciones son simulados. Para operar de verdad se necesita una institución autorizada (banco, IFPE) como proveedor de cobro, la API de WhatsApp Business y cumplimiento con CNBV/Banxico.</div>`;
+  ${orgullo()}<div class="notice"><b>Esto es un prototipo.</b> Los pagos, el QR y las autorizaciones son simulados. Para operar de verdad se necesita una institución autorizada (banco, IFPE) como proveedor de cobro, la API de WhatsApp Business y cumplimiento con CNBV/Banxico.</div>`;
 }
 render();
