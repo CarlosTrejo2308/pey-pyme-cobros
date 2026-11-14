@@ -8,13 +8,40 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import type { ChargeListItem, ChargeRecord, ChargeStatus } from "@/types/charge";
 
-const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
+const REGION =
+  process.env.DYNAMO_AWS_REGION ||
+  process.env.AWS_REGION ||
+  process.env.AWS_DEFAULT_REGION ||
+  "us-east-1";
 
 export function getChargesTableName(): string {
   return process.env.CHARGES_TABLE_NAME || "pey-pyme-charges";
 }
 
-const baseClient = new DynamoDBClient({ region: REGION });
+/**
+ * Amplify Hosting often reserves/blocks AWS_* env names. Prefer standard
+ * AWS_* keys when present; otherwise accept DYNAMO_AWS_* aliases.
+ * When neither is set, fall through to the default SDK credential chain
+ * (local profiles / instance role if ever injected).
+ */
+function resolveExplicitCredentials():
+  | { accessKeyId: string; secretAccessKey: string }
+  | undefined {
+  const accessKeyId =
+    process.env.AWS_ACCESS_KEY_ID || process.env.DYNAMO_AWS_ACCESS_KEY_ID;
+  const secretAccessKey =
+    process.env.AWS_SECRET_ACCESS_KEY || process.env.DYNAMO_AWS_SECRET_ACCESS_KEY;
+  if (!accessKeyId || !secretAccessKey) {
+    return undefined;
+  }
+  return { accessKeyId, secretAccessKey };
+}
+
+const explicitCredentials = resolveExplicitCredentials();
+const baseClient = new DynamoDBClient({
+  region: REGION,
+  ...(explicitCredentials ? { credentials: explicitCredentials } : {}),
+});
 export const docClient = DynamoDBDocumentClient.from(baseClient, {
   marshallOptions: { removeUndefinedValues: true },
 });
@@ -33,26 +60,7 @@ export function peyQrGsiKeys(peyCodiQrId: string) {
   };
 }
 
-function assertAwsCredentialsPresent(): void {
-  const hasEnvKeys = Boolean(
-    process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY,
-  );
-  const hasWebIdentity = Boolean(
-    process.env.AWS_WEB_IDENTITY_TOKEN_FILE && process.env.AWS_ROLE_ARN,
-  );
-  const hasContainerCreds = Boolean(
-    process.env.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI ||
-      process.env.AWS_CONTAINER_CREDENTIALS_FULL_URI,
-  );
-  const hasProfile = Boolean(process.env.AWS_PROFILE);
-  if (!hasEnvKeys && !hasWebIdentity && !hasContainerCreds && !hasProfile) {
-    throw new Error("No AWS credentials in SSR runtime");
-  }
-}
-
 export async function putCharge(item: ChargeRecord): Promise<void> {
-  assertAwsCredentialsPresent();
-
   // DynamoDB String Sets cannot be empty — omit until first webhook id lands.
   const { processedWebhookIds, ...rest } = item;
   const toPut =

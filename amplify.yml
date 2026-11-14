@@ -28,6 +28,14 @@ frontend:
           write_env TWILIO_WHATSAPP_FROM
           write_env TWILIO_WHATSAPP_CONTENT_SID
           write_env TWILIO_CONTENT_VARIABLES
+          # Dynamo credentials for SSR. Amplify often blocks AWS_* names in the
+          # console — prefer DYNAMO_AWS_* there; bake whichever are present.
+          write_env AWS_ACCESS_KEY_ID
+          write_env AWS_SECRET_ACCESS_KEY
+          write_env AWS_REGION
+          write_env DYNAMO_AWS_ACCESS_KEY_ID
+          write_env DYNAMO_AWS_SECRET_ACCESS_KEY
+          write_env DYNAMO_AWS_REGION
           # Confirm which keys were written (names only — never print values).
           echo "Wrote .env.production keys:"
           cut -d= -f1 .env.production | sort
