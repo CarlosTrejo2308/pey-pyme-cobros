@@ -16,8 +16,9 @@ function CobrarInner() {
         <div className="greca" aria-hidden />
         <h2>Cobrar</h2>
         <p className="hint" style={{ marginBottom: 12 }}>
-          Crea un cobro CoDi real vía Pey. El QR y el estado Pagado usan la API
-          y el webhook — no es simulación.
+          Crea un cobro CoDi real vía Pey. Luego muestras el QR o compartes el
+          link (WhatsApp, Mensajes, etc.). El estado Pagado llega por webhook —
+          no es simulación.
         </p>
         <CobrarForm initialConcept={concept} initialAmount={amount} />
       </section>

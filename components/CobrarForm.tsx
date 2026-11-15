@@ -4,15 +4,6 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LupitaAvatar } from "@/components/LupitaAvatar";
 
-function toE164Hint(raw: string): string {
-  const digits = raw.replace(/\D/g, "");
-  if (!digits) return "";
-  if (raw.trim().startsWith("+")) return `+${digits}`;
-  if (digits.length === 10) return `+52${digits}`;
-  if (digits.startsWith("52") && digits.length >= 12) return `+${digits}`;
-  return raw.trim().startsWith("+") ? raw.trim() : `+${digits}`;
-}
-
 export function CobrarForm({
   initialConcept = "",
   initialAmount = "0.01",
@@ -22,7 +13,6 @@ export function CobrarForm({
 }) {
   const router = useRouter();
   const [clientName, setClientName] = useState("");
-  const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState(initialAmount);
   const [concept, setConcept] = useState(initialConcept || "Demo cobro");
   const [numRef, setNumRef] = useState("");
@@ -68,9 +58,7 @@ export function CobrarForm({
         return;
       }
 
-      const wa = toE164Hint(phone);
-      const qs = wa ? `?wa=${encodeURIComponent(wa)}` : "";
-      router.push(`/c/${data.chargeId}${qs}`);
+      router.push(`/c/${data.chargeId}`);
     } catch {
       setError("Error de red al crear el cobro");
     } finally {
@@ -83,7 +71,8 @@ export function CobrarForm({
       <div className="guide">
         <LupitaAvatar size={68} crop />
         <div className="bubble">
-          Dime a quién le cobras y cuánto. Yo creo el QR CoDi real con Pey.
+          Dime a quién le cobras y cuánto. Yo creo el QR CoDi real con Pey; luego
+          lo compartes desde tu teléfono.
         </div>
       </div>
 
@@ -98,17 +87,6 @@ export function CobrarForm({
             onChange={(e) => setClientName(e.target.value)}
             placeholder="Ana López"
             autoComplete="name"
-          />
-        </label>
-        <label className="field">
-          <span>Celular del cliente (opcional, para WhatsApp)</span>
-          <input
-            type="tel"
-            name="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="55 1234 5678 o +525512345678"
-            autoComplete="tel"
           />
         </label>
         <label className="field">
@@ -152,7 +130,8 @@ export function CobrarForm({
         {error ? <p className="form-error">{error}</p> : null}
         <p className="hint">
           El dinero llega a tu cuenta por CoDi. CobroLibre no retiene fondos ni
-          cobra comisión por cobro.
+          cobra comisión por cobro. En la siguiente pantalla compartes el link o
+          muestras el QR.
         </p>
         <button type="submit" className="btn" disabled={busy}>
           {busy ? "Creando cobro…" : "Crear cobro y QR"}

@@ -8,8 +8,8 @@ export default function ProyectoPage() {
         <h2>Sobre CobroLibre + Pey</h2>
         <p>
           <strong>
-            Cobra con QR y WhatsApp; el dinero llega directo a tu cuenta, sin
-            comisión por cobro de CobroLibre.
+            Cobra con QR y link para compartir; el dinero llega directo a tu
+            cuenta, sin comisión por cobro de CobroLibre.
           </strong>{" "}
           Sobre rieles públicos de Banxico (SPEI/CoDi) vía Pey. Pensado para
           PyMEs de todos los giros, con UI accesible e identidad mexicana.
@@ -33,8 +33,8 @@ export default function ProyectoPage() {
             <code>POST /codi/qr</code> → DynamoDB → página <code>/c/[id]</code>
           </li>
           <li>
-            <strong>WhatsApp</strong> → Twilio trial template (si está
-            configurado)
+            <strong>Compartir</strong> → Web Share / copiar link / abrir WhatsApp
+            del dispositivo (Twilio API opcional, no requerido para la demo)
           </li>
           <li>
             <strong>Pagado</strong> → webhook Pey <code>/api/webhooks/pey</code>
@@ -44,8 +44,8 @@ export default function ProyectoPage() {
           </li>
         </ul>
         <p className="notice">
-          Pagar por voz, catálogo, recurrentes y el chat de Lupita son demos de
-          UI del prototipo CobroLibre; no mueven dinero.
+          Pagar, catálogo, recurrentes y el chat de Lupita son demos de visión;
+          no mueven dinero. El pitch P0 es Cobrar → compartir → Pagado.
         </p>
       </section>
 

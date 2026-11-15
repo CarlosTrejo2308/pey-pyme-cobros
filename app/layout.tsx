@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "CobroLibre · Pey Cobros",
   description:
-    "Cobros CoDi para PyMEs: QR dinámico Pey, WhatsApp trial y confirmación en vivo. Identidad CobroLibre.",
+    "Cobros CoDi para PyMEs: QR dinámico Pey, link para compartir y confirmación en vivo. Identidad CobroLibre.",
 };
 
 export const viewport: Viewport = {

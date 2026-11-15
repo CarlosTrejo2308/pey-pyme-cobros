@@ -1,6 +1,6 @@
 # CobroLibre · Pey PyME Cobros
 
-Merchant-first CoDi charging for Mexican PyMEs: **CobroLibre** UI (Spanish-first, accessible, Mexican visual identity) on a Next.js app that creates **real** Pey CoDi QRs, persists charges in DynamoDB, shares via Twilio WhatsApp trial, and confirms **Pagado** through Pey signed webhooks.
+Merchant-first CoDi charging for Mexican PyMEs: **CobroLibre** UI (Spanish-first, accessible, Mexican visual identity) on a Next.js app that creates **real** Pey CoDi QRs, persists charges in DynamoDB, shares the charge link via **Web Share / copy / device WhatsApp**, and confirms **Pagado** through Pey signed webhooks. Twilio WhatsApp API remains optional behind the UI.
 
 Demo bar: **15 Nov 2026**. Stack: Next.js App Router (TypeScript) on AWS Amplify Hosting + DynamoDB (`us-east-1`).
 
@@ -10,11 +10,11 @@ Live: https://main.d38cqojhxzd9iy.amplifyapp.com
 
 ### Real (P0 — Pey + Dynamo)
 - **Inicio** (`/`) — CobroLibre hub, Lupita, tiles, preview of recent charges
-- **Cobrar** (`/cobrar`) — amount, concept, optional client/phone/ref → `POST /api/charges`
-- **Charge page** (`/c/[id]`) — QR from Pey `qrString`, copy link, WhatsApp send, 2s status poll
+- **Cobrar** (`/cobrar`) — amount, concept, optional client/ref → `POST /api/charges`
+- **Charge page** (`/c/[id]`) — QR from Pey `qrString`, **Compartir** (Web Share), copy link, Abrir WhatsApp (`wa.me`), optional Twilio trial under “avanzado”, 2s status poll
 - **Ventas** (`/sales`) — recent charges newest-first
 - **Demo unlock** (`/unlock`) — `DEMO_ACCESS_TOKEN` → `demo_token` cookie
-- **APIs** — charges create/list/get, WhatsApp send, Pey webhook (`/api/webhooks/pey`)
+- **APIs** — charges create/list/get, optional WhatsApp Twilio send, Pey webhook (`/api/webhooks/pey`)
 
 ### Demo-only UI (from CobroLibre prototipo; do not move money)
 - **Pagar** (`/pagar`) — QR/contacts/voice confirm stub
@@ -44,9 +44,7 @@ cp .env.example .env.local
 | `PEY_WEBHOOK_SECRET` | Standard Webhooks secret (`whsec_…`) |
 | `PEY_BANK_ACCOUNT_ID` | Optional; omit to use API-key linked account |
 | `DEMO_ACCESS_TOKEN` | Shared secret for merchant APIs / unlock |
-| `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` | Twilio trial |
-| `TWILIO_WHATSAPP_FROM` | e.g. `whatsapp:+1…` |
-| `TWILIO_WHATSAPP_CONTENT_SID` | Trial template ContentSid |
+| `TWILIO_*` | Optional — API send only if you open “Envío API Twilio” |
 | `CHARGES_TABLE_NAME` | Default `pey-pyme-charges` |
 | `APP_BASE_URL` | Public origin for `shareUrl` (no trailing slash) |
 | `DYNAMO_AWS_*` | Prefer on Amplify if `AWS_*` is blocked |
@@ -65,8 +63,8 @@ Open [http://localhost:3000](http://localhost:3000) → `/unlock` → Cobrar.
 
 1. Unlock with `DEMO_ACCESS_TOKEN`.
 2. **Cobrar** **$0.01** MXN with a short concept.
-3. On `/c/[id]`, confirm QR; optionally **Enviar WhatsApp** to a verified E.164.
-4. Payer scans QR / pays CoDi in bank app.
+3. On `/c/[id]`, show QR; **Compartir** / **Copiar link** / **Abrir WhatsApp** (device share — no Twilio sandbox required).
+4. Payer scans QR / opens link / pays CoDi in bank app.
 5. UI flips to **Pagado** within ~60s (poll every 2s after webhook).
 6. Open **Ventas** — newest row shows paid/pending/expired.
 
