@@ -44,7 +44,7 @@ export default function ProyectoPage() {
           </li>
         </ul>
         <p className="notice">
-          Pagar, catálogo, recurrentes y el chat de Lupita son demos de visión;
+          Pagar, catálogo, recurrentes y el chat de Mati son demos de visión;
           no mueven dinero. El pitch P0 es Cobrar → compartir → Pagado.
         </p>
       </section>
@@ -53,7 +53,7 @@ export default function ProyectoPage() {
         <h3>Psicología del color</h3>
         <p className="hint" style={{ fontSize: "0.95rem", color: "var(--ink)" }}>
           Verde · confianza · Cobrar. Azul · seguridad · Pagar. Naranja ·
-          cercanía · Lupita. Rosa mexicano · identidad. Fondo crema para cansar
+          cercanía · Mati. Rosa mexicano · identidad. Fondo crema para cansar
           menos la vista.
         </p>
       </section>

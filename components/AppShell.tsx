@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import { LupitaAvatar } from "@/components/LupitaAvatar";
+import { MatiAvatar } from "@/components/MatiAvatar";
 
 const NAV = [
   { href: "/", label: "Inicio", icon: "🏠", match: (p: string) => p === "/" },
@@ -62,7 +62,7 @@ export function AppShell({
     <div className={`app-shell ${showNav ? "with-nav" : ""}`}>
       <header className="cl-header">
         <Link href="/" className="cl-brand" aria-label="CobroLibre inicio">
-          <LupitaAvatar size={44} crop className="cl-hav" />
+          <MatiAvatar size={44} crop className="cl-hav" />
           <span>
             <strong>CobroLibre</strong>
             <small>{subtitle}</small>

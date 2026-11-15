@@ -4,12 +4,12 @@ import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { DemoStub } from "@/components/DemoStub";
-import { LupitaAvatar } from "@/components/LupitaAvatar";
+import { MatiAvatar } from "@/components/MatiAvatar";
 
 type Msg = { role: "me" | "bot"; text: string };
 
 const HELLO =
-  'Hola 👋 Soy Lupita. Puedes escribirme cosas como "cobra 300 a Juan" o "¿cuánto vendí hoy?". Los cobros reales se crean en Cobrar; aquí te guío.';
+  'Hola 👋 Soy Mati. Puedes escribirme cosas como "cobra 300 a Juan" o "¿cuánto vendí hoy?". Los cobros reales se crean en Cobrar; aquí te guío.';
 
 const CHIPS = [
   "¿Cuánto vendí hoy?",
@@ -100,7 +100,7 @@ export default function AsistentePage() {
   }
 
   return (
-    <AppShell subtitle="Lupita">
+    <AppShell subtitle="Mati">
       <DemoStub title="Mi asistente">
         <p className="hint">
           Así se ve dentro de WhatsApp. Las sugerencias de cobro te llevan al
@@ -109,9 +109,9 @@ export default function AsistentePage() {
 
         <div className="wa-box">
           <div className="wa-head">
-            <LupitaAvatar size={44} crop />
+            <MatiAvatar size={44} crop />
             <div>
-              Lupita
+              Mati
               <small>en línea · CobroLibre</small>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function AsistentePage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Escribe aquí…"
-              aria-label="Mensaje para Lupita"
+              aria-label="Mensaje para Mati"
             />
             <button type="submit" aria-label="Enviar">
               ➤
