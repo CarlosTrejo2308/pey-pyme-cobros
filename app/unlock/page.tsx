@@ -26,7 +26,7 @@ export default function UnlockPage() {
         setError(data.error?.message || "Token inválido");
         return;
       }
-      router.push("/");
+      router.push("/cobrar");
       router.refresh();
     } catch {
       setError("Error de red");
@@ -41,8 +41,8 @@ export default function UnlockPage() {
         <div className="greca" aria-hidden />
         <h2>Desbloquear demo</h2>
         <p className="hint">
-          Ingresa el token compartido para crear cobros CoDi reales (QR Pey +
-          compartir link).
+          Ingresa el token compartido. Después vas directo a{" "}
+          <strong>Cobrar $0.01</strong> (QR Pey + compartir link).
         </p>
         <form className="cobrar-form" onSubmit={onSubmit}>
           <label className="field">

@@ -11,14 +11,13 @@ const NAV = [
     href: "/cobrar",
     label: "Cobrar",
     icon: "💵",
-    match: (p: string) =>
-      p.startsWith("/cobrar") || p.startsWith("/c/") || p.startsWith("/sales"),
+    match: (p: string) => p.startsWith("/cobrar") || p.startsWith("/c/"),
   },
   {
-    href: "/pagar",
-    label: "Pagar",
-    icon: "📤",
-    match: (p: string) => p.startsWith("/pagar"),
+    href: "/sales",
+    label: "Ventas",
+    icon: "📋",
+    match: (p: string) => p.startsWith("/sales"),
   },
   {
     href: "/asistente",
@@ -28,8 +27,8 @@ const NAV = [
   },
   {
     href: "/proyecto",
-    label: "Proyecto",
-    icon: "📋",
+    label: "Info",
+    icon: "ℹ️",
     match: (p: string) => p.startsWith("/proyecto"),
   },
 ] as const;

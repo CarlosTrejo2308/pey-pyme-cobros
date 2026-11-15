@@ -65,6 +65,10 @@ function ChargeInner() {
     };
   }, [fetchCharge]);
 
+  const isPaid = charge?.status === "paid";
+  const isPending = charge?.status === "pending";
+  const isExpired = charge?.status === "expired";
+
   return (
     <AppShell subtitle="Cobro CoDi">
       {error ? (
@@ -79,44 +83,70 @@ function ChargeInner() {
           <p className="pulse">Cargando cobro…</p>
         </section>
       ) : (
-        <section className="card">
+        <section className={`card charge-card ${isPaid ? "is-paid" : ""}`}>
           <div className="greca" aria-hidden />
+
+          {isPaid ? (
+            <div className="state-banner state-paid" role="status">
+              <span className="state-banner-title">Pagado</span>
+              <span>Pago CoDi recibido · sin comisión de CobroLibre</span>
+            </div>
+          ) : isExpired ? (
+            <div className="state-banner state-expired" role="status">
+              <span className="state-banner-title">Expirado</span>
+              <span>Crea un cobro nuevo para volver a cobrar</span>
+            </div>
+          ) : (
+            <div className="state-banner state-pending" role="status">
+              <span className="state-banner-title">Pendiente</span>
+              <span>Esperando pago CoDi… se actualiza sola</span>
+            </div>
+          )}
+
           <div className="charge-head">
             <p className="hint" style={{ margin: 0 }}>
-              Cobro listo · muestra el QR o compártelo
+              {isPaid
+                ? "Cobro cerrado"
+                : "Muestra el QR o compártelo"}
             </p>
             <ChargeStatusBadge status={charge.status} />
           </div>
+
           <h1 className="amount">
             ${charge.amount.toFixed(2)}{" "}
             <span className="currency">MXN</span>
           </h1>
-          <p className="concept">{charge.concept}</p>
+          <p className="concept concept-strong">{charge.concept}</p>
 
-          <div className={`qr-wrap ${charge.status === "paid" ? "paid" : ""}`}>
-            <QrDisplay qrString={charge.qrString} />
-            {charge.status === "paid" ? (
-              <div className="paid-overlay" role="status">
+          <div className={`qr-wrap ${isPaid ? "paid" : ""}`}>
+            <QrDisplay
+              qrString={charge.qrString}
+              size={300}
+              showDownload={isPending || isPaid}
+              downloadName={`cobro-${charge.chargeId.slice(0, 8)}`}
+            />
+            {isPaid ? (
+              <div className="paid-overlay" aria-hidden>
                 Pagado
               </div>
             ) : null}
           </div>
 
-          {charge.status === "pending" ? (
+          {isPending ? (
             <p className="poll-hint">
               Esperando pago CoDi… se actualiza cada 2s vía webhook Pey
             </p>
           ) : null}
-          {charge.status === "expired" ? (
+          {isExpired ? (
             <p className="form-error">Este cobro expiró. Crea uno nuevo.</p>
           ) : null}
-          {charge.status === "paid" ? (
+          {isPaid ? (
             <p className="form-ok" role="status">
-              ¡Pago recibido! Sin comisiones de CobroLibre.
+              ¡Pago recibido! Revisa el historial en Ventas.
             </p>
           ) : null}
 
-          {charge.status === "pending" ? (
+          {isPending ? (
             <ShareChargeActions
               shareUrl={charge.shareUrl}
               amount={charge.amount}
@@ -133,7 +163,7 @@ function ChargeInner() {
             </div>
           )}
 
-          {charge.status === "pending" ? (
+          {isPending ? (
             <>
               <div className="actions" style={{ marginTop: "0.75rem" }}>
                 <Link href="/cobrar" className="btn alt">
