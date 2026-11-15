@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LupitaAvatar } from "@/components/LupitaAvatar";
+import { MatiAvatar } from "@/components/MatiAvatar";
 
 export function CobrarForm({
   initialConcept = "",
@@ -69,7 +69,7 @@ export function CobrarForm({
   return (
     <>
       <div className="guide">
-        <LupitaAvatar size={68} crop />
+        <MatiAvatar size={68} crop />
         <div className="bubble">
           Dime a quién le cobras y cuánto. Yo creo el QR CoDi real con Pey; luego
           lo compartes desde tu teléfono.

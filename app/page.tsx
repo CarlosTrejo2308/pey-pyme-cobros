@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
-import { LupitaAvatar } from "@/components/LupitaAvatar";
+import { MatiAvatar } from "@/components/MatiAvatar";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
 import type { ChargeListItem } from "@/types/charge";
 
@@ -62,9 +62,9 @@ export default function HomePage() {
       </p>
 
       <div className="hero-lupita">
-        <LupitaAvatar size={120} />
+        <MatiAvatar size={120} />
         <div className="bubble">
-          <strong>¡Hola!</strong> Soy Lupita. El camino del pitch es{" "}
+          <strong>¡Hola!</strong> Soy Mati. El camino del pitch es{" "}
           <strong>Cobrar</strong> con un peso de prueba ($0.01), mostrar el QR
           CoDi y compartir el link.
         </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               💬
             </span>
-            <b>Lupita</b>
+            <b>Mati</b>
             <span>Asistente (demo)</span>
           </Link>
           <Link
