@@ -45,19 +45,62 @@ export default function HomePage() {
 
   return (
     <AppShell>
+      <p className="demo-strip" role="note">
+        <span className="demo-strip-label">Demo</span>
+        {locked ? (
+          <>
+            Primero{" "}
+            <Link href="/unlock">desbloquea</Link>, luego{" "}
+            <Link href="/cobrar">Cobrar $0.01</Link>.
+          </>
+        ) : (
+          <>
+            Empieza en <Link href="/cobrar">Cobrar $0.01</Link> → QR →
+            Compartir → <Link href="/sales">Ventas</Link>.
+          </>
+        )}
+      </p>
+
       <div className="hero-lupita">
         <LupitaAvatar size={120} />
         <div className="bubble">
-          <strong>¡Hola!</strong> Soy Lupita. Empieza por{" "}
-          <strong>Cobrar</strong>: QR CoDi real (Pey) y compartes el link desde
-          tu teléfono.
+          <strong>¡Hola!</strong> Soy Lupita. El camino del pitch es{" "}
+          <strong>Cobrar</strong> con un peso de prueba ($0.01), mostrar el QR
+          CoDi y compartir el link.
         </div>
       </div>
 
-      <p className="pitch-path" role="note">
-        Camino del demo: <Link href="/cobrar">Cobrar</Link> → QR / compartir →
-        Pagado → <Link href="/sales">Ventas</Link>
-      </p>
+      <ol className="demo-path" aria-label="Camino del demo">
+        <li className={locked ? "demo-step current" : "demo-step done"}>
+          {locked ? (
+            <Link href="/unlock">
+              <b>1. Desbloquear</b>
+              <span>Token de la demo</span>
+            </Link>
+          ) : (
+            <>
+              <b>1. Desbloquear</b>
+              <span>Listo</span>
+            </>
+          )}
+        </li>
+        <li className={!locked ? "demo-step current" : "demo-step"}>
+          <Link href="/cobrar">
+            <b>2. Cobrar $0.01</b>
+            <span>QR CoDi real (Pey)</span>
+          </Link>
+        </li>
+        <li className="demo-step">
+          <b>3. QR → Compartir</b>
+          <span>Muestra o envía el link</span>
+        </li>
+        <li className="demo-step">
+          <Link href="/sales">
+            <b>4. Ventas</b>
+            <span>Pendiente → Pagado</span>
+          </Link>
+        </li>
+      </ol>
 
       {locked ? (
         <p className="notice">
@@ -84,66 +127,93 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="p0-row">
-        <Link href="/cobrar" className="tile tile-p0" style={{ background: "#0B6B4F" }}>
-          <span className="tile-icon" aria-hidden>
-            💵
-          </span>
-          <b>Cobrar</b>
-          <span>QR CoDi + compartir</span>
-        </Link>
-        <Link href="/sales" className="tile tile-p0" style={{ background: "#6B3FA0" }}>
-          <span className="tile-icon" aria-hidden>
-            📋
-          </span>
-          <b>Ventas</b>
-          <span>Cobros reales</span>
-        </Link>
+      <div className="cta-stack">
+        {locked ? (
+          <Link href="/unlock" className="btn cta-primary">
+            Desbloquear demo
+          </Link>
+        ) : (
+          <Link href="/cobrar" className="btn cta-primary">
+            Cobrar $0.01
+          </Link>
+        )}
+        <div className="p0-row">
+          <Link
+            href="/cobrar"
+            className="tile tile-p0"
+            style={{ background: "#0B6B4F" }}
+          >
+            <span className="tile-icon" aria-hidden>
+              💵
+            </span>
+            <b>Cobrar</b>
+            <span>QR CoDi + compartir</span>
+          </Link>
+          <Link
+            href="/sales"
+            className="tile tile-p0"
+            style={{ background: "#6B3FA0" }}
+          >
+            <span className="tile-icon" aria-hidden>
+              📋
+            </span>
+            <b>Ventas</b>
+            <span>Cobros reales</span>
+          </Link>
+        </div>
       </div>
 
-      <p className="hint section-label">Más ideas (demo de visión)</p>
-      <div className="grid2">
-        <Link href="/pagar" className="tile" style={{ background: "#1F5FA8" }}>
-          <span className="tile-icon" aria-hidden>
-            📤
-          </span>
-          <b>Pagar</b>
-          <span>Demo · no mueve $</span>
-        </Link>
-        <Link
-          href="/recurrentes"
-          className="tile"
-          style={{ background: "#3F4FA0" }}
-        >
-          <span className="tile-icon" aria-hidden>
-            📅
-          </span>
-          <b>Mensuales</b>
-          <span>Demo · no mueve $</span>
-        </Link>
-        <Link
-          href="/asistente"
-          className="tile"
-          style={{ background: "#B34E0A" }}
-        >
-          <span className="tile-icon" aria-hidden>
-            💬
-          </span>
-          <b>Lupita</b>
-          <span>Asistente (demo)</span>
-        </Link>
-        <Link
-          href="/catalogo"
-          className="tile"
-          style={{ background: "#0E6E7E" }}
-        >
-          <span className="tile-icon" aria-hidden>
-            🛍️
-          </span>
-          <b>Catálogo</b>
-          <span>Demo · precios</span>
-        </Link>
-      </div>
+      <details className="stub-fold">
+        <summary>
+          Más ideas (demo de visión · no mueve dinero)
+        </summary>
+        <p className="hint section-label" style={{ marginTop: "0.65rem" }}>
+          Opcional para jueces: prototipos. El pitch real es Cobrar → QR →
+          Compartir → Ventas.
+        </p>
+        <div className="grid2 stub-grid">
+          <Link href="/pagar" className="tile tile-stub" style={{ background: "#1F5FA8" }}>
+            <span className="tile-icon" aria-hidden>
+              📤
+            </span>
+            <b>Pagar</b>
+            <span>Demo · no mueve $</span>
+          </Link>
+          <Link
+            href="/recurrentes"
+            className="tile tile-stub"
+            style={{ background: "#3F4FA0" }}
+          >
+            <span className="tile-icon" aria-hidden>
+              📅
+            </span>
+            <b>Mensuales</b>
+            <span>Demo · no mueve $</span>
+          </Link>
+          <Link
+            href="/asistente"
+            className="tile tile-stub"
+            style={{ background: "#B34E0A" }}
+          >
+            <span className="tile-icon" aria-hidden>
+              💬
+            </span>
+            <b>Lupita</b>
+            <span>Asistente (demo)</span>
+          </Link>
+          <Link
+            href="/catalogo"
+            className="tile tile-stub"
+            style={{ background: "#0E6E7E" }}
+          >
+            <span className="tile-icon" aria-hidden>
+              🛍️
+            </span>
+            <b>Catálogo</b>
+            <span>Demo · precios</span>
+          </Link>
+        </div>
+      </details>
 
       {!locked && items.length > 0 ? (
         <section className="card">

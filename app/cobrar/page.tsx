@@ -15,6 +15,11 @@ function CobrarInner() {
       <section className="card">
         <div className="greca" aria-hidden />
         <h2>Cobrar</h2>
+        <p className="demo-strip" role="note" style={{ marginBottom: 12 }}>
+          <span className="demo-strip-label">Demo</span>
+          Usa <strong>$0.01</strong> para el pitch. Luego: QR → Compartir →
+          Pagado → Ventas.
+        </p>
         <p className="hint" style={{ marginBottom: 12 }}>
           Crea un cobro CoDi real vía Pey. Luego muestras el QR o compartes el
           link (WhatsApp, Mensajes, etc.). El estado Pagado llega por webhook —
