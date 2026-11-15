@@ -41,7 +41,8 @@ export default function UnlockPage() {
         <div className="greca" aria-hidden />
         <h2>Desbloquear demo</h2>
         <p className="hint">
-          Ingresa el token compartido para crear cobros CoDi y enviar WhatsApp.
+          Ingresa el token compartido para crear cobros CoDi reales (QR Pey +
+          compartir link).
         </p>
         <form className="cobrar-form" onSubmit={onSubmit}>
           <label className="field">

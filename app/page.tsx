@@ -48,10 +48,16 @@ export default function HomePage() {
       <div className="hero-lupita">
         <LupitaAvatar size={120} />
         <div className="bubble">
-          <strong>¡Hola!</strong> Soy Lupita. Te ayudo a cobrar sin comisiones
-          con QR CoDi real (Pey). Toca un botón para empezar.
+          <strong>¡Hola!</strong> Soy Lupita. Empieza por{" "}
+          <strong>Cobrar</strong>: QR CoDi real (Pey) y compartes el link desde
+          tu teléfono.
         </div>
       </div>
+
+      <p className="pitch-path" role="note">
+        Camino del demo: <Link href="/cobrar">Cobrar</Link> → QR / compartir →
+        Pagado → <Link href="/sales">Ventas</Link>
+      </p>
 
       {locked ? (
         <p className="notice">
@@ -78,24 +84,31 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="grid2">
-        <Link
-          href="/cobrar"
-          className="tile"
-          style={{ background: "#0B6B4F" }}
-        >
+      <div className="p0-row">
+        <Link href="/cobrar" className="tile tile-p0" style={{ background: "#0B6B4F" }}>
           <span className="tile-icon" aria-hidden>
             💵
           </span>
           <b>Cobrar</b>
-          <span>QR CoDi + WhatsApp</span>
+          <span>QR CoDi + compartir</span>
         </Link>
+        <Link href="/sales" className="tile tile-p0" style={{ background: "#6B3FA0" }}>
+          <span className="tile-icon" aria-hidden>
+            📋
+          </span>
+          <b>Ventas</b>
+          <span>Cobros reales</span>
+        </Link>
+      </div>
+
+      <p className="hint section-label">Más ideas (demo de visión)</p>
+      <div className="grid2">
         <Link href="/pagar" className="tile" style={{ background: "#1F5FA8" }}>
           <span className="tile-icon" aria-hidden>
             📤
           </span>
           <b>Pagar</b>
-          <span>Demo proveedores</span>
+          <span>Demo · no mueve $</span>
         </Link>
         <Link
           href="/recurrentes"
@@ -106,7 +119,7 @@ export default function HomePage() {
             📅
           </span>
           <b>Mensuales</b>
-          <span>Demo recurrentes</span>
+          <span>Demo · no mueve $</span>
         </Link>
         <Link
           href="/asistente"
@@ -128,14 +141,7 @@ export default function HomePage() {
             🛍️
           </span>
           <b>Catálogo</b>
-          <span>Precios guardados</span>
-        </Link>
-        <Link href="/sales" className="tile" style={{ background: "#6B3FA0" }}>
-          <span className="tile-icon" aria-hidden>
-            📋
-          </span>
-          <b>Ventas</b>
-          <span>Cobros reales</span>
+          <span>Demo · precios</span>
         </Link>
       </div>
 

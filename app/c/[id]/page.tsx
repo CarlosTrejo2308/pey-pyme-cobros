@@ -6,6 +6,7 @@ import { Suspense, useCallback, useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
 import { QrDisplay } from "@/components/QrDisplay";
+import { ShareChargeActions } from "@/components/ShareChargeActions";
 import { WhatsAppSendForm } from "@/components/WhatsAppSendForm";
 import type { ChargePublic, ChargeStatus } from "@/types/charge";
 
@@ -18,7 +19,6 @@ function ChargeInner() {
   const initialWa = search.get("wa") || "";
   const [charge, setCharge] = useState<ChargePublic | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
 
   const fetchCharge = useCallback(async () => {
     const res = await fetch(`/api/charges/${id}`, { cache: "no-store" });
@@ -65,20 +65,6 @@ function ChargeInner() {
     };
   }, [fetchCharge]);
 
-  async function copyShare() {
-    if (!charge?.shareUrl) return;
-    try {
-      const absolute = charge.shareUrl.startsWith("http")
-        ? charge.shareUrl
-        : `${window.location.origin}${charge.shareUrl}`;
-      await navigator.clipboard.writeText(absolute);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
   return (
     <AppShell subtitle="Cobro CoDi">
       {error ? (
@@ -97,7 +83,7 @@ function ChargeInner() {
           <div className="greca" aria-hidden />
           <div className="charge-head">
             <p className="hint" style={{ margin: 0 }}>
-              Cobro listo
+              Cobro listo · muestra el QR o compártelo
             </p>
             <ChargeStatusBadge status={charge.status} />
           </div>
@@ -130,20 +116,38 @@ function ChargeInner() {
             </p>
           ) : null}
 
-          <div className="actions">
-            <button type="button" className="btn alt" onClick={copyShare}>
-              {copied ? "Link copiado" : "Copiar link"}
-            </button>
-            <Link href="/cobrar" className="btn alt">
-              Otro cobro
-            </Link>
-          </div>
+          {charge.status === "pending" ? (
+            <ShareChargeActions
+              shareUrl={charge.shareUrl}
+              amount={charge.amount}
+              concept={charge.concept}
+            />
+          ) : (
+            <div className="actions">
+              <Link href="/cobrar" className="btn">
+                Nuevo cobro
+              </Link>
+              <Link href="/sales" className="btn alt">
+                Ver ventas
+              </Link>
+            </div>
+          )}
 
           {charge.status === "pending" ? (
-            <WhatsAppSendForm
-              chargeId={charge.chargeId}
-              initialTo={initialWa}
-            />
+            <>
+              <div className="actions" style={{ marginTop: "0.75rem" }}>
+                <Link href="/cobrar" className="btn alt">
+                  Otro cobro
+                </Link>
+                <Link href="/sales" className="btn alt">
+                  Ventas
+                </Link>
+              </div>
+              <WhatsAppSendForm
+                chargeId={charge.chargeId}
+                initialTo={initialWa}
+              />
+            </>
           ) : null}
         </section>
       )}

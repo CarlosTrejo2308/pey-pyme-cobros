@@ -2,6 +2,10 @@
 
 import { FormEvent, useState } from "react";
 
+/**
+ * Optional Twilio trial send — kept for ops demos when env is configured.
+ * Not required for the hackathon pitch; prefer ShareChargeActions.
+ */
 export function WhatsAppSendForm({
   chargeId,
   disabled,
@@ -37,7 +41,7 @@ export function WhatsAppSendForm({
         setError(data.error?.message || "No se pudo enviar WhatsApp");
         return;
       }
-      setMessage(`Enviado (${data.twilioSid})`);
+      setMessage(`Enviado vía API (${data.twilioSid})`);
     } catch {
       setError("Error de red al enviar WhatsApp");
     } finally {
@@ -46,33 +50,36 @@ export function WhatsAppSendForm({
   }
 
   return (
-    <form className="wa-form" onSubmit={onSubmit}>
-      <label className="field">
-        <span>WhatsApp (E.164 verificado en Twilio trial)</span>
-        <input
-          type="tel"
-          name="toE164"
-          placeholder="+525512345678"
-          value={toE164}
-          onChange={(e) => setToE164(e.target.value)}
-          disabled={disabled || busy}
-          required
-          autoComplete="tel"
-        />
-      </label>
-      <button
-        type="submit"
-        className="btn wa"
-        disabled={disabled || busy || !toE164.trim()}
-      >
-        {busy ? "Enviando…" : "📲 Enviar por WhatsApp"}
-      </button>
-      {message ? <p className="form-ok">{message}</p> : null}
-      {error ? <p className="form-error">{error}</p> : null}
-      <p className="form-hint">
-        Trial Twilio: solo números verificados. El QR de esta página sigue
-        siendo el camino en persona / respaldo.
-      </p>
-    </form>
+    <details className="wa-advanced">
+      <summary>Envío API Twilio (opcional, trial)</summary>
+      <form className="wa-form" onSubmit={onSubmit}>
+        <label className="field">
+          <span>Número E.164 verificado en el trial</span>
+          <input
+            type="tel"
+            name="toE164"
+            placeholder="+525512345678"
+            value={toE164}
+            onChange={(e) => setToE164(e.target.value)}
+            disabled={disabled || busy}
+            required
+            autoComplete="tel"
+          />
+        </label>
+        <button
+          type="submit"
+          className="btn alt sm"
+          disabled={disabled || busy || !toE164.trim()}
+        >
+          {busy ? "Enviando…" : "Enviar plantilla Twilio"}
+        </button>
+        {message ? <p className="form-ok">{message}</p> : null}
+        {error ? <p className="form-error">{error}</p> : null}
+        <p className="form-hint">
+          Solo si configuraste Twilio y el destinatario está verificado. Para
+          la demo del pitch usa Compartir / Copiar link / Abrir WhatsApp arriba.
+        </p>
+      </form>
+    </details>
   );
 }

@@ -12,11 +12,14 @@ export function DemoStub({
   return (
     <section className="card">
       <div className="greca" aria-hidden />
+      <p className="demo-badge" role="status">
+        Demo · no mueve dinero
+      </p>
       <h2>{title}</h2>
       <p className="notice" role="note">
-        Vista de demostración del prototipo CobroLibre. No mueve dinero real.
-        Para cobrar de verdad usa <Link href="/cobrar">Cobrar</Link> (QR CoDi
-        Pey).
+        Prototipo de visión CobroLibre. El camino real del pitch es{" "}
+        <Link href="/cobrar">Cobrar</Link> → QR CoDi Pey → compartir link →
+        Pagado.
       </p>
       {children}
     </section>

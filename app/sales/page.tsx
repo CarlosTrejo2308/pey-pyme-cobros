@@ -58,7 +58,8 @@ export default function SalesPage() {
         <div className="greca" aria-hidden />
         <h2>Mis cobros</h2>
         <p className="hint">
-          Lista real desde DynamoDB. El estado Pagado llega por webhook Pey.
+          Lista real (DynamoDB). Pagado llega por webhook Pey — parte del camino
+          del demo junto con Cobrar.
         </p>
 
         {loading ? <p className="pulse">Cargando…</p> : null}
