@@ -3,11 +3,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
+import { OrgulloMexico } from "@/components/Artesanias";
 import { MatiAvatar } from "@/components/MatiAvatar";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
+import { useI18n } from "@/components/I18nProvider";
 import type { ChargeListItem } from "@/types/charge";
 
 export default function HomePage() {
+  const { t, mx, lang } = useI18n();
   const [items, setItems] = useState<ChargeListItem[]>([]);
   const [locked, setLocked] = useState(false);
 
@@ -46,83 +49,106 @@ export default function HomePage() {
   return (
     <AppShell>
       <p className="demo-strip" role="note">
-        <span className="demo-strip-label">Demo</span>
+        <span className="demo-strip-label">{t("demoLabel")}</span>{" "}
         {locked ? (
+          lang === "es" ? (
+            <>
+              Primero <Link href="/unlock">{t("unlockLink")}</Link>, luego{" "}
+              <Link href="/cobrar">{t("cobrarLink")}</Link>.
+            </>
+          ) : lang === "en" ? (
+            <>
+              First <Link href="/unlock">{t("unlockLink")}</Link>, then{" "}
+              <Link href="/cobrar">{t("cobrarLink")}</Link>.
+            </>
+          ) : lang === "zh" ? (
+            <>
+              先
+              <Link href="/unlock">{t("unlockLink")}</Link>
+              ，再
+              <Link href="/cobrar">{t("cobrarLink")}</Link>。
+            </>
+          ) : (
+            <>
+              D&apos;abord <Link href="/unlock">{t("unlockLink")}</Link>, puis{" "}
+              <Link href="/cobrar">{t("cobrarLink")}</Link>.
+            </>
+          )
+        ) : lang === "es" ? (
           <>
-            Primero{" "}
-            <Link href="/unlock">desbloquea</Link>, luego{" "}
-            <Link href="/cobrar">Cobrar $0.01</Link>.
+            Empieza en <Link href="/cobrar">{t("cobrarLink")}</Link> → QR →
+            Compartir → <Link href="/sales">{t("salesLink")}</Link>.
+          </>
+        ) : lang === "en" ? (
+          <>
+            Start at <Link href="/cobrar">{t("cobrarLink")}</Link> → QR → Share
+            → <Link href="/sales">{t("salesLink")}</Link>.
+          </>
+        ) : lang === "zh" ? (
+          <>
+            从
+            <Link href="/cobrar">{t("cobrarLink")}</Link>
+            开始 → 二维码 → 分享 → <Link href="/sales">{t("salesLink")}</Link>
+            。
           </>
         ) : (
           <>
-            Empieza en <Link href="/cobrar">Cobrar $0.01</Link> → QR →
-            Compartir → <Link href="/sales">Ventas</Link>.
+            Commencez par <Link href="/cobrar">{t("cobrarLink")}</Link> → QR →
+            Partager → <Link href="/sales">{t("salesLink")}</Link>.
           </>
         )}
       </p>
 
       <div className="hero-lupita">
         <MatiAvatar size={120} />
-        <div className="bubble">
-          <strong>¡Hola!</strong> Soy Mati. El camino del pitch es{" "}
-          <strong>Cobrar</strong> con un peso de prueba ($0.01), mostrar el QR
-          CoDi y compartir el link.
-        </div>
+        <div className="bubble">{t("hiBubble")}</div>
       </div>
 
-      <ol className="demo-path" aria-label="Camino del demo">
+      <ol className="demo-path" aria-label={t("pathAria")}>
         <li className={locked ? "demo-step current" : "demo-step done"}>
           {locked ? (
             <Link href="/unlock">
-              <b>1. Desbloquear</b>
-              <span>Token de la demo</span>
+              <b>{t("step1")}</b>
+              <span>{t("step1Sub")}</span>
             </Link>
           ) : (
             <>
-              <b>1. Desbloquear</b>
-              <span>Listo</span>
+              <b>{t("step1")}</b>
+              <span>{t("step1Done")}</span>
             </>
           )}
         </li>
         <li className={!locked ? "demo-step current" : "demo-step"}>
           <Link href="/cobrar">
-            <b>2. Cobrar $0.01</b>
-            <span>QR CoDi real (Pey)</span>
+            <b>{t("step2")}</b>
+            <span>{t("step2Sub")}</span>
           </Link>
         </li>
         <li className="demo-step">
-          <b>3. QR → Compartir</b>
-          <span>Muestra o envía el link</span>
+          <b>{t("step3")}</b>
+          <span>{t("step3Sub")}</span>
         </li>
         <li className="demo-step">
           <Link href="/sales">
-            <b>4. Ventas</b>
-            <span>Pendiente → Pagado</span>
+            <b>{t("step4")}</b>
+            <span>{t("step4Sub")}</span>
           </Link>
         </li>
       </ol>
 
       {locked ? (
         <p className="notice">
-          Para crear cobros,{" "}
-          <Link href="/unlock">desbloquea la demo</Link> con el token
-          compartido.
+          {t("noticeUnlock")}{" "}
+          <Link href="/unlock">{t("unlockDemoCta")}</Link>
         </p>
       ) : (
         <div className="money">
           <p className="hint" style={{ marginTop: 0 }}>
-            Recibido (últimos cobros cargados)
+            {t("receivedHint")}
           </p>
-          <p className="big">
-            $
-            {received.toLocaleString("es-MX", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </p>
+          <p className="big">{mx(received)}</p>
           <p className="hint">
-            Comisiones que NO pagaste (ejemplo vs 3.6% + IVA): $
-            {savedApprox.toFixed(2)}
+            {t("savedHint")} {mx(savedApprox)}
           </p>
         </div>
       )}
@@ -130,11 +156,11 @@ export default function HomePage() {
       <div className="cta-stack">
         {locked ? (
           <Link href="/unlock" className="btn cta-primary">
-            Desbloquear demo
+            {t("unlockDemoCta")}
           </Link>
         ) : (
           <Link href="/cobrar" className="btn cta-primary">
-            Cobrar $0.01
+            {t("cobrarLink")}
           </Link>
         )}
         <div className="p0-row">
@@ -146,8 +172,8 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               💵
             </span>
-            <b>Cobrar</b>
-            <span>QR CoDi + compartir</span>
+            <b>{t("tileCobrar")}</b>
+            <span>{t("tileCobrarS")}</span>
           </Link>
           <Link
             href="/sales"
@@ -157,27 +183,28 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               📋
             </span>
-            <b>Ventas</b>
-            <span>Cobros reales</span>
+            <b>{t("tileVentas")}</b>
+            <span>{t("tileVentasS")}</span>
           </Link>
         </div>
       </div>
 
       <details className="stub-fold">
-        <summary>
-          Más ideas (demo de visión · no mueve dinero)
-        </summary>
+        <summary>{t("stubFold")}</summary>
         <p className="hint section-label" style={{ marginTop: "0.65rem" }}>
-          Opcional para jueces: prototipos. El pitch real es Cobrar → QR →
-          Compartir → Ventas.
+          {t("stubHint")}
         </p>
         <div className="grid2 stub-grid">
-          <Link href="/pagar" className="tile tile-stub" style={{ background: "#1F5FA8" }}>
+          <Link
+            href="/pagar"
+            className="tile tile-stub"
+            style={{ background: "#1F5FA8" }}
+          >
             <span className="tile-icon" aria-hidden>
               📤
             </span>
-            <b>Pagar</b>
-            <span>Demo · no mueve $</span>
+            <b>{t("tilePagar")}</b>
+            <span>{t("tilePagarS")}</span>
           </Link>
           <Link
             href="/recurrentes"
@@ -187,8 +214,8 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               📅
             </span>
-            <b>Mensuales</b>
-            <span>Demo · no mueve $</span>
+            <b>{t("tileMens")}</b>
+            <span>{t("tilePagarS")}</span>
           </Link>
           <Link
             href="/asistente"
@@ -198,8 +225,8 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               💬
             </span>
-            <b>Mati</b>
-            <span>Asistente (demo)</span>
+            <b>{t("tileMati")}</b>
+            <span>{t("tileMatiS")}</span>
           </Link>
           <Link
             href="/catalogo"
@@ -209,8 +236,8 @@ export default function HomePage() {
             <span className="tile-icon" aria-hidden>
               🛍️
             </span>
-            <b>Catálogo</b>
-            <span>Demo · precios</span>
+            <b>{t("tileCat")}</b>
+            <span>{t("tileCatS")}</span>
           </Link>
         </div>
       </details>
@@ -218,7 +245,7 @@ export default function HomePage() {
       {!locked && items.length > 0 ? (
         <section className="card">
           <div className="greca" aria-hidden />
-          <h3>Mis cobros recientes</h3>
+          <h3>{t("recentTitle")}</h3>
           <ul className="sales-list">
             {items.map((item) => (
               <li key={item.chargeId}>
@@ -233,25 +260,12 @@ export default function HomePage() {
             ))}
           </ul>
           <Link href="/sales" className="btn alt sm">
-            Ver todas las ventas
+            {t("seeAllSales")}
           </Link>
         </section>
       ) : null}
 
-      <section className="orgullo" aria-label="Hecho con cariño en México">
-        <span style={{ fontSize: "2.4rem" }} aria-hidden>
-          🇲🇽
-        </span>
-        <div>
-          <p>
-            <strong>Hecho con cariño en México</strong>
-          </p>
-          <p className="hint">
-            Para PyMEs de todos los giros. Sello decorativo de CobroLibre (no es
-            el distintivo oficial). Powered by Pey CoDi.
-          </p>
-        </div>
-      </section>
+      <OrgulloMexico />
     </AppShell>
   );
 }

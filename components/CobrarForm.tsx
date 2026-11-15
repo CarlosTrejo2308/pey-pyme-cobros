@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MatiAvatar } from "@/components/MatiAvatar";
+import { useI18n } from "@/components/I18nProvider";
 
 export function CobrarForm({
   initialConcept = "",
@@ -12,9 +13,12 @@ export function CobrarForm({
   initialAmount?: string;
 }) {
   const router = useRouter();
+  const { t } = useI18n();
   const [clientName, setClientName] = useState("");
   const [amount, setAmount] = useState(initialAmount);
-  const [concept, setConcept] = useState(initialConcept || "Demo cobro");
+  const [concept, setConcept] = useState(
+    () => initialConcept || "Demo cobro",
+  );
   const [numRef, setNumRef] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -54,13 +58,13 @@ export function CobrarForm({
         return;
       }
       if (!res.ok || !data.chargeId) {
-        setError(data.error?.message || "No se pudo crear el cobro");
+        setError(data.error?.message || t("cErrCreate"));
         return;
       }
 
       router.push(`/c/${data.chargeId}`);
     } catch {
-      setError("Error de red al crear el cobro");
+      setError(t("cErrNet"));
     } finally {
       setBusy(false);
     }
@@ -70,15 +74,12 @@ export function CobrarForm({
     <>
       <div className="guide">
         <MatiAvatar size={68} crop />
-        <div className="bubble">
-          Dime a quién le cobras y cuánto. Yo creo el QR CoDi real con Pey; luego
-          lo compartes desde tu teléfono.
-        </div>
+        <div className="bubble">{t("guideCobrar")}</div>
       </div>
 
       <form className="cobrar-form" onSubmit={onSubmit}>
         <label className="field">
-          <span>Nombre del cliente (opcional)</span>
+          <span>{t("cName")}</span>
           <input
             type="text"
             name="clientName"
@@ -90,7 +91,7 @@ export function CobrarForm({
           />
         </label>
         <label className="field">
-          <span>Monto en pesos (MXN)</span>
+          <span>{t("cAmt")}</span>
           <input
             type="number"
             name="amount"
@@ -103,7 +104,7 @@ export function CobrarForm({
           />
         </label>
         <label className="field">
-          <span>¿Por qué es el cobro?</span>
+          <span>{t("cWhy")}</span>
           <input
             type="text"
             name="concept"
@@ -114,7 +115,7 @@ export function CobrarForm({
           />
         </label>
         <label className="field">
-          <span>Referencia (opcional, máx. 7 dígitos)</span>
+          <span>{t("cRef")}</span>
           <input
             type="text"
             name="numRef"
@@ -128,13 +129,9 @@ export function CobrarForm({
           />
         </label>
         {error ? <p className="form-error">{error}</p> : null}
-        <p className="hint">
-          El dinero llega a tu cuenta por CoDi. CobroLibre no retiene fondos ni
-          cobra comisión por cobro. En la siguiente pantalla compartes el link o
-          muestras el QR.
-        </p>
+        <p className="hint">{t("cHint")}</p>
         <button type="submit" className="btn" disabled={busy}>
-          {busy ? "Creando cobro…" : "Crear cobro y QR"}
+          {busy ? t("cCreating") : t("cMk")}
         </button>
       </form>
     </>

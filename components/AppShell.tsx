@@ -3,49 +3,62 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MatiAvatar } from "@/components/MatiAvatar";
+import { useI18n } from "@/components/I18nProvider";
+import type { MsgKey } from "@/lib/i18n";
 
-const NAV = [
-  { href: "/", label: "Inicio", icon: "🏠", match: (p: string) => p === "/" },
+const NAV: {
+  href: string;
+  labelKey: MsgKey;
+  icon: string;
+  match: (p: string) => boolean;
+}[] = [
+  { href: "/", labelKey: "nInicio", icon: "🏠", match: (p) => p === "/" },
   {
     href: "/cobrar",
-    label: "Cobrar",
+    labelKey: "nCobrar",
     icon: "💵",
-    match: (p: string) => p.startsWith("/cobrar") || p.startsWith("/c/"),
+    match: (p) => p.startsWith("/cobrar") || p.startsWith("/c/"),
   },
   {
     href: "/sales",
-    label: "Ventas",
+    labelKey: "nVentas",
     icon: "📋",
-    match: (p: string) => p.startsWith("/sales"),
+    match: (p) => p.startsWith("/sales"),
   },
   {
     href: "/asistente",
-    label: "Ayuda",
+    labelKey: "nAyuda",
     icon: "💬",
-    match: (p: string) => p.startsWith("/asistente"),
+    match: (p) => p.startsWith("/asistente"),
   },
   {
     href: "/proyecto",
-    label: "Info",
+    labelKey: "nInfo",
     icon: "ℹ️",
-    match: (p: string) => p.startsWith("/proyecto"),
+    match: (p) => p.startsWith("/proyecto"),
   },
-] as const;
+];
 
 const FONT_STEPS = [18, 20, 22, 24] as const;
 
 export function AppShell({
   children,
-  subtitle = "Cobra sin comisiones",
+  subtitle,
+  subtitleKey = "sub",
   showNav = true,
 }: {
   children: ReactNode;
+  /** Override subtitle text (takes precedence over subtitleKey). */
   subtitle?: string;
+  subtitleKey?: MsgKey;
   showNav?: boolean;
 }) {
   const pathname = usePathname();
+  const { t } = useI18n();
   const [fontStep, setFontStep] = useState(1);
+  const resolvedSubtitle = subtitle ?? t(subtitleKey);
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -61,23 +74,24 @@ export function AppShell({
   return (
     <div className={`app-shell ${showNav ? "with-nav" : ""}`}>
       <header className="cl-header">
-        <Link href="/" className="cl-brand" aria-label="CobroLibre inicio">
+        <Link href="/" className="cl-brand" aria-label={t("brandHome")}>
           <MatiAvatar size={44} crop className="cl-hav" />
           <span>
             <strong>CobroLibre</strong>
-            <small>{subtitle}</small>
+            <small>{resolvedSubtitle}</small>
           </span>
         </Link>
         <div className="cl-tools">
+          <LanguageSwitcher />
           <button
             type="button"
             className="tool-btn"
-            aria-label="Aumentar tamaño de letra"
+            aria-label={t("fontAa")}
             onClick={bumpFont}
           >
             Aa
           </button>
-          <Link href="/unlock" className="tool-btn" aria-label="Acceso demo">
+          <Link href="/unlock" className="tool-btn" aria-label={t("unlockAria")}>
             🔑
           </Link>
         </div>
@@ -119,20 +133,21 @@ export function AppShell({
       <main className="cl-main">{children}</main>
 
       {showNav ? (
-        <nav className="cl-nav" aria-label="Menú principal">
+        <nav className="cl-nav" aria-label={t("navAria")}>
           {NAV.map((item) => {
             const current = item.match(pathname);
+            const label = t(item.labelKey);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                data-v={item.label.toLowerCase()}
+                data-v={label.toLowerCase()}
               >
                 <span className="i" aria-hidden>
                   {item.icon}
                 </span>
-                {item.label}
+                {label}
               </Link>
             );
           })}
