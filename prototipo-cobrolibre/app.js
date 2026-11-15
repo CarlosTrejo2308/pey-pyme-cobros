@@ -194,34 +194,11 @@ const COMM=0.036*1.16;
 const saved=()=>Math.round(total(paid())*COMM*100)/100;
 
 /* ---------- LUPITA e iconos ---------- */
+const MATI_FACE='mati-face.jpg',MATI_FULL='mati-full.png';
 function lupita(o={}){
   const {phone=false,crop=false,cls=''}=o;
-  const vb=crop?'46 34 108 124':'0 0 200 240';
-  const hair='#1d1420',skin='#E3A97C',pink='#E6007E';
-  return `<svg class="${cls}" viewBox="${vb}" role="img" aria-label="Mati" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="52" cy="140" rx="13" ry="17" fill="${hair}"/><ellipse cx="46" cy="168" rx="12" ry="16" fill="${hair}"/><ellipse cx="42" cy="196" rx="11" ry="15" fill="${hair}"/>
-  <ellipse cx="148" cy="140" rx="13" ry="17" fill="${hair}"/><ellipse cx="154" cy="168" rx="12" ry="16" fill="${hair}"/><ellipse cx="158" cy="196" rx="11" ry="15" fill="${hair}"/>
-  <path d="M30 240C30 186 66 160 100 160s70 26 70 80z" fill="#fff" stroke="#e5ddd0" stroke-width="2"/>
-  <path d="M70 168Q100 196 130 168" fill="none" stroke="${pink}" stroke-width="4" stroke-linecap="round"/>
-  ${[[78,178],[90,186],[100,189],[110,186],[122,178]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5.5" fill="${pink}"/><circle cx="${x}" cy="${y}" r="2" fill="#FFD6EA"/>`).join('')}
-  <ellipse cx="84" cy="190" rx="6" ry="2.6" fill="#2e8b57" transform="rotate(35 84 190)"/><ellipse cx="116" cy="190" rx="6" ry="2.6" fill="#2e8b57" transform="rotate(-35 116 190)"/>
-  <rect x="90" y="146" width="20" height="20" rx="8" fill="${skin}"/>
-  <ellipse cx="100" cy="88" rx="56" ry="58" fill="${hair}"/>
-  <ellipse cx="100" cy="104" rx="46" ry="50" fill="${skin}"/>
-  <path d="M52 92C56 54 144 54 148 92 132 74 114 70 100 80 86 70 68 74 52 92z" fill="${hair}"/>
-  <g fill="${pink}"><path d="M48 100l-15-9v18z"/><path d="M48 100l15-9v18z"/><path d="M152 100l-15-9v18z"/><path d="M152 100l15-9v18z"/></g>
-  <circle cx="48" cy="100" r="4" fill="#B0005F"/><circle cx="152" cy="100" r="4" fill="#B0005F"/>
-  <circle cx="56" cy="126" r="5.5" fill="${pink}"/><circle cx="144" cy="126" r="5.5" fill="${pink}"/>
-  <path d="M71 93Q82 85 93 91M107 91Q118 85 129 93" stroke="${hair}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <ellipse cx="82" cy="107" rx="8" ry="10" fill="#3a2212"/><ellipse cx="118" cy="107" rx="8" ry="10" fill="#3a2212"/>
-  <circle cx="85" cy="103" r="3" fill="#fff"/><circle cx="121" cy="103" r="3" fill="#fff"/>
-  <circle cx="72" cy="124" r="7" fill="#F28B82" opacity=".55"/><circle cx="128" cy="124" r="7" fill="#F28B82" opacity=".55"/>
-  <path d="M100 113q-3 6 0 8" stroke="#b9805a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <path d="M89 128Q100 141 111 128z" fill="#fff" stroke="#9c2b3a" stroke-width="3" stroke-linejoin="round"/>
-  ${phone?`<path d="M170 240L153 229" stroke="${skin}" stroke-width="15" stroke-linecap="round"/>
-  <g transform="rotate(-8 150 195)"><rect x="128" y="150" width="46" height="78" rx="9" fill="#232323"/><rect x="132" y="156" width="38" height="66" rx="5" fill="#0B6B4F"/><circle cx="151" cy="180" r="11" fill="#fff"/><path d="M145 180l4 4 8-9" stroke="#0B6B4F" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="138" y="198" width="26" height="5" rx="2.5" fill="#fff" opacity=".85"/><rect x="142" y="207" width="18" height="4" rx="2" fill="#fff" opacity=".6"/></g>
-  <circle cx="129" cy="206" r="6" fill="${skin}"/>`:''}
-  </svg>`;
+  const src=crop?MATI_FACE:MATI_FULL;
+  return `<img class="${cls}${crop?' mface':' mfull'}" src="${src}" alt="Mati" width="${crop?54:200}" height="${crop?54:200}">`;
 }
 function ico(n,sz=56){
   const d={
