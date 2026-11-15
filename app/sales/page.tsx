@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppShell } from "@/components/AppShell";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
 import type { ChargeListItem } from "@/types/charge";
 
@@ -52,28 +53,19 @@ export default function SalesPage() {
   }, [router]);
 
   return (
-    <main className="shell">
-      <header className="topbar">
-        <Link href="/" className="brand">
-          Pey
-        </Link>
-        <nav className="nav">
-          <Link href="/">Cobrar</Link>
-          <Link href="/sales" aria-current="page">
-            Ventas
-          </Link>
-        </nav>
-      </header>
-
-      <section className="panel">
-        <h1 className="title">Ventas recientes</h1>
-        <p className="lede">Últimos cobros del comercio demo.</p>
+    <AppShell subtitle="Ventas">
+      <section className="card">
+        <div className="greca" aria-hidden />
+        <h2>Mis cobros</h2>
+        <p className="hint">
+          Lista real desde DynamoDB. El estado Pagado llega por webhook Pey.
+        </p>
 
         {loading ? <p className="pulse">Cargando…</p> : null}
         {error ? <p className="form-error">{error}</p> : null}
 
         {!loading && !error && items.length === 0 ? (
-          <p className="lede">Aún no hay cobros. Crea el primero.</p>
+          <p className="hint">Aún no hay cobros. Crea el primero.</p>
         ) : null}
 
         <ul className="sales-list">
@@ -92,7 +84,11 @@ export default function SalesPage() {
             </li>
           ))}
         </ul>
+
+        <Link href="/cobrar" className="btn" style={{ marginTop: 12 }}>
+          Nuevo cobro
+        </Link>
       </section>
-    </main>
+    </AppShell>
   );
 }

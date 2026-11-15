@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useEffect, useState } from "react";
+import { AppShell } from "@/components/AppShell";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
 import { QrDisplay } from "@/components/QrDisplay";
 import { WhatsAppSendForm } from "@/components/WhatsAppSendForm";
@@ -10,9 +11,11 @@ import type { ChargePublic, ChargeStatus } from "@/types/charge";
 
 const POLL_MS = 2000;
 
-export default function ChargePage() {
+function ChargeInner() {
   const params = useParams<{ id: string }>();
+  const search = useSearchParams();
   const id = params.id;
+  const initialWa = search.get("wa") || "";
   const [charge, setCharge] = useState<ChargePublic | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -65,10 +68,9 @@ export default function ChargePage() {
   async function copyShare() {
     if (!charge?.shareUrl) return;
     try {
-      const absolute =
-        charge.shareUrl.startsWith("http")
-          ? charge.shareUrl
-          : `${window.location.origin}${charge.shareUrl}`;
+      const absolute = charge.shareUrl.startsWith("http")
+        ? charge.shareUrl
+        : `${window.location.origin}${charge.shareUrl}`;
       await navigator.clipboard.writeText(absolute);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -78,32 +80,25 @@ export default function ChargePage() {
   }
 
   return (
-    <main className="shell">
-      <header className="topbar">
-        <Link href="/" className="brand">
-          Pey
-        </Link>
-        <nav className="nav">
-          <Link href="/">Cobrar</Link>
-          <Link href="/sales">Ventas</Link>
-        </nav>
-      </header>
-
+    <AppShell subtitle="Cobro CoDi">
       {error ? (
-        <section className="panel">
+        <section className="card">
           <p className="form-error">{error}</p>
-          <Link href="/" className="btn btn-secondary">
+          <Link href="/cobrar" className="btn">
             Nuevo cobro
           </Link>
         </section>
       ) : !charge ? (
-        <section className="panel">
-          <p className="lede pulse">Cargando cobro…</p>
+        <section className="card">
+          <p className="pulse">Cargando cobro…</p>
         </section>
       ) : (
-        <section className="panel charge-panel">
+        <section className="card">
+          <div className="greca" aria-hidden />
           <div className="charge-head">
-            <p className="eyebrow">Cobro</p>
+            <p className="hint" style={{ margin: 0 }}>
+              Cobro listo
+            </p>
             <ChargeStatusBadge status={charge.status} />
           </div>
           <h1 className="amount">
@@ -122,28 +117,50 @@ export default function ChargePage() {
           </div>
 
           {charge.status === "pending" ? (
-            <p className="lede poll-hint">
-              Esperando pago CoDi… se actualiza cada 2s
+            <p className="poll-hint">
+              Esperando pago CoDi… se actualiza cada 2s vía webhook Pey
             </p>
           ) : null}
           {charge.status === "expired" ? (
             <p className="form-error">Este cobro expiró. Crea uno nuevo.</p>
           ) : null}
+          {charge.status === "paid" ? (
+            <p className="form-ok" role="status">
+              ¡Pago recibido! Sin comisiones de CobroLibre.
+            </p>
+          ) : null}
 
           <div className="actions">
-            <button type="button" className="btn btn-secondary" onClick={copyShare}>
+            <button type="button" className="btn alt" onClick={copyShare}>
               {copied ? "Link copiado" : "Copiar link"}
             </button>
-            <Link href="/" className="btn btn-ghost">
+            <Link href="/cobrar" className="btn alt">
               Otro cobro
             </Link>
           </div>
 
           {charge.status === "pending" ? (
-            <WhatsAppSendForm chargeId={charge.chargeId} />
+            <WhatsAppSendForm
+              chargeId={charge.chargeId}
+              initialTo={initialWa}
+            />
           ) : null}
         </section>
       )}
-    </main>
+    </AppShell>
+  );
+}
+
+export default function ChargePage() {
+  return (
+    <Suspense
+      fallback={
+        <AppShell>
+          <p className="pulse">Cargando…</p>
+        </AppShell>
+      }
+    >
+      <ChargeInner />
+    </Suspense>
   );
 }

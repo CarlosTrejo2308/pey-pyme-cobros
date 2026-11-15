@@ -2,15 +2,15 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pey Cobros",
+  title: "CobroLibre · Pey Cobros",
   description:
-    "Cobros CoDi para PyMEs: QR dinámico, WhatsApp trial y confirmación en vivo.",
+    "Cobros CoDi para PyMEs: QR dinámico Pey, WhatsApp trial y confirmación en vivo. Identidad CobroLibre.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0B3D3A",
+  themeColor: "#0B6B4F",
 };
 
 export default function RootLayout({
