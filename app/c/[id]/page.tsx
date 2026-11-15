@@ -8,6 +8,7 @@ import { ChargeStatusBadge } from "@/components/ChargeStatus";
 import { QrDisplay } from "@/components/QrDisplay";
 import { ShareChargeActions } from "@/components/ShareChargeActions";
 import { WhatsAppSendForm } from "@/components/WhatsAppSendForm";
+import { useI18n } from "@/components/I18nProvider";
 import type { ChargePublic, ChargeStatus } from "@/types/charge";
 
 const POLL_MS = 2000;
@@ -15,6 +16,7 @@ const POLL_MS = 2000;
 function ChargeInner() {
   const params = useParams<{ id: string }>();
   const search = useSearchParams();
+  const { t } = useI18n();
   const id = params.id;
   const initialWa = search.get("wa") || "";
   const [charge, setCharge] = useState<ChargePublic | null>(null);
@@ -23,19 +25,19 @@ function ChargeInner() {
   const fetchCharge = useCallback(async () => {
     const res = await fetch(`/api/charges/${id}`, { cache: "no-store" });
     if (res.status === 404) {
-      setError("Cobro no encontrado");
+      setError(t("errNotFound"));
       setCharge(null);
       return null;
     }
     if (!res.ok) {
-      setError("No se pudo cargar el cobro");
+      setError(t("errLoad"));
       return null;
     }
     const data = (await res.json()) as ChargePublic;
     setCharge(data);
     setError(null);
     return data;
-  }, [id]);
+  }, [id, t]);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,17 +72,17 @@ function ChargeInner() {
   const isExpired = charge?.status === "expired";
 
   return (
-    <AppShell subtitle="Cobro CoDi">
+    <AppShell subtitleKey="subCharge">
       {error ? (
         <section className="card">
           <p className="form-error">{error}</p>
           <Link href="/cobrar" className="btn">
-            Nuevo cobro
+            {t("newCharge")}
           </Link>
         </section>
       ) : !charge ? (
         <section className="card">
-          <p className="pulse">Cargando cobro…</p>
+          <p className="pulse">{t("loadingCharge")}</p>
         </section>
       ) : (
         <section className={`card charge-card ${isPaid ? "is-paid" : ""}`}>
@@ -88,26 +90,24 @@ function ChargeInner() {
 
           {isPaid ? (
             <div className="state-banner state-paid" role="status">
-              <span className="state-banner-title">Pagado</span>
-              <span>Pago CoDi recibido · sin comisión de CobroLibre</span>
+              <span className="state-banner-title">{t("paidBanner")}</span>
+              <span>{t("paidBannerSub")}</span>
             </div>
           ) : isExpired ? (
             <div className="state-banner state-expired" role="status">
-              <span className="state-banner-title">Expirado</span>
-              <span>Crea un cobro nuevo para volver a cobrar</span>
+              <span className="state-banner-title">{t("expiredBanner")}</span>
+              <span>{t("expiredBannerSub")}</span>
             </div>
           ) : (
             <div className="state-banner state-pending" role="status">
-              <span className="state-banner-title">Pendiente</span>
-              <span>Esperando pago CoDi… se actualiza sola</span>
+              <span className="state-banner-title">{t("pendingBanner")}</span>
+              <span>{t("pendingBannerSub")}</span>
             </div>
           )}
 
           <div className="charge-head">
             <p className="hint" style={{ margin: 0 }}>
-              {isPaid
-                ? "Cobro cerrado"
-                : "Muestra el QR o compártelo"}
+              {isPaid ? t("chargeClosed") : t("showOrShare")}
             </p>
             <ChargeStatusBadge status={charge.status} />
           </div>
@@ -127,22 +127,18 @@ function ChargeInner() {
             />
             {isPaid ? (
               <div className="paid-overlay" aria-hidden>
-                Pagado
+                {t("paidBanner")}
               </div>
             ) : null}
           </div>
 
-          {isPending ? (
-            <p className="poll-hint">
-              Esperando pago CoDi… se actualiza cada 2s vía webhook Pey
-            </p>
-          ) : null}
+          {isPending ? <p className="poll-hint">{t("pollHint")}</p> : null}
           {isExpired ? (
-            <p className="form-error">Este cobro expiró. Crea uno nuevo.</p>
+            <p className="form-error">{t("expiredMsg")}</p>
           ) : null}
           {isPaid ? (
             <p className="form-ok" role="status">
-              ¡Pago recibido! Revisa el historial en Ventas.
+              {t("paidOk")}
             </p>
           ) : null}
 
@@ -155,10 +151,10 @@ function ChargeInner() {
           ) : (
             <div className="actions">
               <Link href="/cobrar" className="btn">
-                Nuevo cobro
+                {t("newCharge")}
               </Link>
               <Link href="/sales" className="btn alt">
-                Ver ventas
+                {t("seeSales")}
               </Link>
             </div>
           )}
@@ -167,10 +163,10 @@ function ChargeInner() {
             <>
               <div className="actions" style={{ marginTop: "0.75rem" }}>
                 <Link href="/cobrar" className="btn alt">
-                  Otro cobro
+                  {t("otherCharge")}
                 </Link>
                 <Link href="/sales" className="btn alt">
-                  Ventas
+                  {t("nVentas")}
                 </Link>
               </div>
               <WhatsAppSendForm
@@ -190,7 +186,7 @@ export default function ChargePage() {
     <Suspense
       fallback={
         <AppShell>
-          <p className="pulse">Cargando…</p>
+          <p className="pulse">…</p>
         </AppShell>
       }
     >

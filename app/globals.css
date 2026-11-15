@@ -138,9 +138,11 @@ h3 {
   border-radius: 10px;
   min-height: 42px;
   min-width: 42px;
-  padding: 0 10px;
+  padding: 0 8px;
   font: inherit;
+  font-size: 0.85rem;
   font-weight: 700;
+  white-space: nowrap;
   font-size: 0.85rem;
   cursor: pointer;
   text-decoration: none;
@@ -358,14 +360,114 @@ h3 {
   border: 3px solid var(--pink);
   border-radius: 18px;
   padding: 14px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  margin-top: 8px;
+}
+
+.orgullo.card {
+  display: block;
 }
 
 .orgullo p {
   margin: 0;
   font-size: 0.9rem;
+}
+
+.orgullo-copy h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.orgullo-copy p {
+  color: var(--mut);
+  font-size: 0.85rem;
+}
+
+.orow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.orgullo-seal {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.arts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.arts figure {
+  margin: 0;
+}
+
+.arts svg {
+  width: 100%;
+  height: auto;
+  background: #fff1dc;
+  border-radius: 14px;
+}
+
+.arts figcaption {
+  font-size: 0.6rem;
+  font-weight: 700;
+  margin-top: 3px;
+  line-height: 1.2;
+}
+
+@media (max-width: 380px) {
+  .arts {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .arts figcaption {
+    font-size: 0.62rem;
+  }
+
+  .arts figure:last-child {
+    grid-column: 2 / 4;
+  }
+}
+
+.lang-ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.lang-ovc {
+  background: #fff;
+  border-radius: 26px;
+  padding: 18px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  border: 4px solid var(--g);
+}
+
+.lang-ovc h2 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lang-list .btn {
+  margin: 0;
 }
 
 .btn {

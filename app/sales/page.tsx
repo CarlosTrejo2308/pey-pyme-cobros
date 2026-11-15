@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { ChargeStatusBadge } from "@/components/ChargeStatus";
+import { useI18n } from "@/components/I18nProvider";
 import type { ChargeListItem } from "@/types/charge";
 
 export default function SalesPage() {
   const router = useRouter();
+  const { t, locale } = useI18n();
   const [items, setItems] = useState<ChargeListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +34,7 @@ export default function SalesPage() {
         };
         if (!res.ok) {
           if (!cancelled) {
-            setError(data.error?.message || "No se pudo cargar ventas");
+            setError(data.error?.message || t("salesErr"));
           }
           return;
         }
@@ -41,7 +43,7 @@ export default function SalesPage() {
           setError(null);
         }
       } catch {
-        if (!cancelled) setError("Error de red");
+        if (!cancelled) setError(t("netErr"));
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -50,23 +52,20 @@ export default function SalesPage() {
     return () => {
       cancelled = true;
     };
-  }, [router]);
+  }, [router, t]);
 
   return (
-    <AppShell subtitle="Ventas">
+    <AppShell subtitleKey="subSales">
       <section className="card">
         <div className="greca" aria-hidden />
-        <h2>Mis cobros</h2>
-        <p className="hint">
-          Lista real (DynamoDB). Pagado llega por webhook Pey — parte del camino
-          del demo junto con Cobrar.
-        </p>
+        <h2>{t("salesTitle")}</h2>
+        <p className="hint">{t("salesHint")}</p>
 
-        {loading ? <p className="pulse">Cargando…</p> : null}
+        {loading ? <p className="pulse">{t("loading")}</p> : null}
         {error ? <p className="form-error">{error}</p> : null}
 
         {!loading && !error && items.length === 0 ? (
-          <p className="hint">Aún no hay cobros. Crea el primero.</p>
+          <p className="hint">{t("salesEmpty")}</p>
         ) : null}
 
         <ul className="sales-list">
@@ -77,7 +76,7 @@ export default function SalesPage() {
                   <p className="sales-amount">${item.amount.toFixed(2)}</p>
                   <p className="sales-concept">{item.concept}</p>
                   <p className="sales-meta">
-                    {new Date(item.createdAt).toLocaleString("es-MX")}
+                    {new Date(item.createdAt).toLocaleString(locale)}
                   </p>
                 </div>
                 <ChargeStatusBadge status={item.status} />
@@ -87,7 +86,7 @@ export default function SalesPage() {
         </ul>
 
         <Link href="/cobrar" className="btn" style={{ marginTop: 12 }}>
-          Nuevo cobro
+          {t("newCharge")}
         </Link>
       </section>
     </AppShell>

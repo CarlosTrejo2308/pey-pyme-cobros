@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/I18nProvider";
 
 function absoluteShareUrl(shareUrl: string): string {
   if (shareUrl.startsWith("http")) return shareUrl;
   if (typeof window === "undefined") return shareUrl;
   return `${window.location.origin}${shareUrl.startsWith("/") ? "" : "/"}${shareUrl}`;
-}
-
-function shareText(amount: number, concept: string, url: string): string {
-  return `Te cobro $${amount.toFixed(2)} MXN — ${concept}\nPaga con CoDi aquí: ${url}`;
 }
 
 /**
@@ -27,6 +24,7 @@ export function ShareChargeActions({
   concept: string;
   disabled?: boolean;
 }) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
   const [canNativeShare, setCanNativeShare] = useState(false);
   const [shareError, setShareError] = useState<string | null>(null);
@@ -41,6 +39,14 @@ export function ShareChargeActions({
     return absoluteShareUrl(shareUrl);
   }
 
+  function buildShareText(absolute: string) {
+    return t("shareText", {
+      m: amount.toFixed(2),
+      c: concept,
+      u: absolute,
+    });
+  }
+
   async function onCopy() {
     setShareError(null);
     try {
@@ -48,40 +54,38 @@ export function ShareChargeActions({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setShareError("No se pudo copiar. Selecciona el link manualmente.");
+      setShareError(t("copyFail"));
     }
   }
 
   async function onNativeShare() {
     setShareError(null);
     const absolute = url();
-    const text = shareText(amount, concept, absolute);
+    const text = buildShareText(absolute);
     try {
       await navigator.share({
-        title: "Cobro CoDi · CobroLibre",
+        title: t("shareTitle"),
         text,
         url: absolute,
       });
     } catch (err) {
       const name = err instanceof Error ? err.name : "";
       if (name === "AbortError") return;
-      setShareError("No se pudo abrir el menú de compartir. Usa Copiar link.");
+      setShareError(t("shareFail"));
     }
   }
 
   function onWhatsAppApp() {
     setShareError(null);
     const absolute = url();
-    const text = shareText(amount, concept, absolute);
+    const text = buildShareText(absolute);
     const href = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(href, "_blank", "noopener,noreferrer");
   }
 
   return (
     <div className="share-panel">
-      <p className="share-lead">
-        Comparte el link o el QR con tu cliente (WhatsApp, Mensajes, etc.).
-      </p>
+      <p className="share-lead">{t("shareLead")}</p>
       <div className="actions share-actions">
         {canNativeShare ? (
           <button
@@ -90,7 +94,7 @@ export function ShareChargeActions({
             onClick={onNativeShare}
             disabled={disabled}
           >
-            Compartir
+            {t("shareBtn")}
           </button>
         ) : null}
         <button
@@ -99,7 +103,7 @@ export function ShareChargeActions({
           onClick={onCopy}
           disabled={disabled}
         >
-          {copied ? "Link copiado" : "Copiar link"}
+          {copied ? t("linkCopied") : t("copyLink")}
         </button>
         <button
           type="button"
@@ -107,14 +111,11 @@ export function ShareChargeActions({
           onClick={onWhatsAppApp}
           disabled={disabled}
         >
-          Abrir WhatsApp
+          {t("openWa")}
         </button>
       </div>
       {shareError ? <p className="form-error">{shareError}</p> : null}
-      <p className="form-hint">
-        Usa el menú de tu teléfono para enviar el cobro. No hace falta sandbox
-        de Twilio para la demo.
-      </p>
+      <p className="form-hint">{t("shareHint")}</p>
     </div>
   );
 }
