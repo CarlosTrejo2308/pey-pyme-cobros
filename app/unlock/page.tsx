@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppShell } from "@/components/AppShell";
 
 export default function UnlockPage() {
   const router = useRouter();
@@ -35,16 +36,12 @@ export default function UnlockPage() {
   }
 
   return (
-    <main className="shell">
-      <header className="topbar">
-        <Link href="/" className="brand">
-          Pey
-        </Link>
-      </header>
-      <section className="panel">
-        <h1 className="title">Desbloquear demo</h1>
-        <p className="lede">
-          Ingresa el token compartido para crear cobros y enviar WhatsApp.
+    <AppShell subtitle="Acceso demo" showNav={false}>
+      <section className="card">
+        <div className="greca" aria-hidden />
+        <h2>Desbloquear demo</h2>
+        <p className="hint">
+          Ingresa el token compartido para crear cobros CoDi y enviar WhatsApp.
         </p>
         <form className="cobrar-form" onSubmit={onSubmit}>
           <label className="field">
@@ -59,11 +56,14 @@ export default function UnlockPage() {
             />
           </label>
           {error ? <p className="form-error">{error}</p> : null}
-          <button type="submit" className="btn btn-primary" disabled={busy}>
+          <button type="submit" className="btn" disabled={busy}>
             {busy ? "Validando…" : "Entrar"}
           </button>
         </form>
+        <p className="hint" style={{ marginTop: 12 }}>
+          <Link href="/">Volver al inicio</Link>
+        </p>
       </section>
-    </main>
+    </AppShell>
   );
 }

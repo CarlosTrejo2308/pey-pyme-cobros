@@ -5,11 +5,13 @@ import { FormEvent, useState } from "react";
 export function WhatsAppSendForm({
   chargeId,
   disabled,
+  initialTo = "",
 }: {
   chargeId: string;
   disabled?: boolean;
+  initialTo?: string;
 }) {
-  const [toE164, setToE164] = useState("");
+  const [toE164, setToE164] = useState(initialTo);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -46,7 +48,7 @@ export function WhatsAppSendForm({
   return (
     <form className="wa-form" onSubmit={onSubmit}>
       <label className="field">
-        <span>WhatsApp (E.164 verificado)</span>
+        <span>WhatsApp (E.164 verificado en Twilio trial)</span>
         <input
           type="tel"
           name="toE164"
@@ -60,16 +62,16 @@ export function WhatsAppSendForm({
       </label>
       <button
         type="submit"
-        className="btn btn-secondary"
+        className="btn wa"
         disabled={disabled || busy || !toE164.trim()}
       >
-        {busy ? "Enviando…" : "Enviar WhatsApp"}
+        {busy ? "Enviando…" : "📲 Enviar por WhatsApp"}
       </button>
       {message ? <p className="form-ok">{message}</p> : null}
       {error ? <p className="form-error">{error}</p> : null}
       <p className="form-hint">
-        Trial Twilio: solo números verificados. El pago sigue por QR en esta
-        página.
+        Trial Twilio: solo números verificados. El QR de esta página sigue
+        siendo el camino en persona / respaldo.
       </p>
     </form>
   );
