@@ -194,7 +194,7 @@ const COMM=0.036*1.16;
 const saved=()=>Math.round(total(paid())*COMM*100)/100;
 
 /* ---------- LUPITA e iconos ---------- */
-const MATI_FACE='mati-face.jpg',MATI_FULL='mati-full.jpg';
+const MATI_FACE='mati-face.jpg',MATI_FULL='mati-full.png';
 function lupita(o={}){
   const {phone=false,crop=false,cls=''}=o;
   const src=crop?MATI_FACE:MATI_FULL;

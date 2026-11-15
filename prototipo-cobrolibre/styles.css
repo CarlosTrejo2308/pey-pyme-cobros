@@ -129,4 +129,4 @@ header .tools button{min-width:42px;padding:0 8px;font-size:.85rem}
 nav button[data-v=pagar][aria-current=page]{background:#1F5FA8}
 
 .mface{object-fit:cover;object-position:50% 18%;border-radius:50%;border:2px solid #E6007E;background:#3a0a30}
-.mfull{border-radius:22px;object-fit:cover;background:#3a0a30}
+.mfull{object-fit:contain;background:none;border:0}
